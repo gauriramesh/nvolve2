@@ -1,6 +1,5 @@
 import React from "react"; 
 import "./Organization.css"; 
-import { Route } from "react-router-dom"; 
 
 const One = () => {
     return(
@@ -20,7 +19,7 @@ const Two = () => {
 
 const Organization = (props) => {
 
-    let { org } = props.match.params;
+    const { org } = props.match.params;
     let component; 
 
     if (org === "test") {
@@ -34,6 +33,6 @@ const Organization = (props) => {
             { component }
         </div>
     );
-}
+};
 
 export default Organization; 

@@ -7,11 +7,10 @@ import {
 
 import {
     Navbar,
-    NavbarBrand,
 } from "reactstrap";
 
 
-const Nav = (props) => {
+const Nav = () => {
     return(
     <div>
         <Navbar color="light">

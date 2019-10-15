@@ -23,7 +23,7 @@ const NotFound = () => {
             <Row>
                 <Col md="12">
                     <div class="text-center">
-                    <img className="rounded" src="https://media.giphy.com/media/EsmlrgWNx5v0Y/giphy.gif"/>
+                    <img className="rounded" src="https://media.giphy.com/media/EsmlrgWNx5v0Y/giphy.gif" alt="Obama shrugs."/>
                     </div>
                 </Col>
             </Row>
