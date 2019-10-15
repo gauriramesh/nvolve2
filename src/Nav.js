@@ -1,4 +1,6 @@
 import React from "react"; 
+import './Nav.css';
+
 import {
     Link, 
 } from "react-router-dom";
@@ -8,11 +10,14 @@ import {
     NavbarBrand,
 } from "reactstrap";
 
+
 const Nav = (props) => {
     return(
     <div>
         <Navbar color="light">
-            <NavbarBrand href="#">NVolve2</NavbarBrand>
+            <span className="navbar-brand">
+                <Link className="brand-text" to="/">NVolve2</Link>
+            </span>
         </Navbar>
     </div>);
 };
