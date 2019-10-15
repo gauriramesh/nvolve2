@@ -28,7 +28,9 @@ const Organization = (props) => {
         component = <Two/>
     }
 
-    return(
+return (
+   org === "test" ? <One /> : <Two />
+);
         <div>
             { component }
         </div>
