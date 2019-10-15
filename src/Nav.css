@@ -1,8 +1,8 @@
 .brand-text {
-    color: #343a40;
+  color: #343a40;
 }
 
 .brand-text:hover {
-    color: #343a40; 
-    text-decoration: none;
+  color: #343a40;
+  text-decoration: none;
 }
