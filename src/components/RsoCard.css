@@ -1,0 +1,15 @@
+.rso-card {
+  background-color: #f5f1e7;
+  box-shadow: 0px 5px 10px #55555555;
+  border-radius: 10px;
+}
+
+.rso-name {
+  font-family: "Source Sans Pro";
+  font-weight: 100;
+  font-size: 3.5em;
+}
+
+.task-dropdown {
+  width: inherit; 
+}
