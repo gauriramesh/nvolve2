@@ -8,7 +8,7 @@ import { Navbar } from "reactstrap";
 const Nav = () => {
   return (
     <div>
-      <Navbar color="light">
+      <Navbar className="brand-text">
         <span className="navbar-brand">
           <Link className="brand-text" to="/">
             NVolve2
