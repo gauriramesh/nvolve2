@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,400i,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,400i,600,700&display=swap");
 
 .App {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 200;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .App-header {
-  background-color: #FF2400;
+  background-color: #ff2400;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
