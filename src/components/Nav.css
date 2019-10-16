@@ -1,5 +1,7 @@
 .brand-text {
-  color: #343a40;
+  color: white;
+  background-color: #ff2400;
+  font-weight: bold;
 }
 
 .brand-text:hover {
