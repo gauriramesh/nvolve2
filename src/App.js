@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Nav from "./Nav";
-import Dashboard from "./Dashboard";
-import Organization from "./Organization";
-import NotFound from "./NotFound";
+import Nav from "./components/Nav";
+import Dashboard from "./pages/Dashboard";
+import Organization from "./pages/Organization";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
