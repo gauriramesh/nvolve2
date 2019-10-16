@@ -24,7 +24,7 @@ export class Event {
         this.publicDescription = '';
         this.numParticipants = '';
         this.repeatCycle = eventRepeatOptions.DoesNotRepeat;
-        this.date = '';
+        this.date = undefined;
         this.startTime = '';
         this.endTime = '';
         this.locations = [];
