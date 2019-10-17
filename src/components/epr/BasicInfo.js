@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./BasicInfo.css";
-import { Event, eventRepeatOptions } from "../../services/eventServices";
+import { eventRepeatOptions } from "../../services/eventServices";
 import { Button, Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
 
 export default class BasicInfo extends React.Component  {
     constructor(props) {
         super(props);
 
+        //pre-populates dropdown options using enum
         this.repeatOptions = [];
         for(const option in eventRepeatOptions) {
             this.repeatOptions.push(<option>{option}</option>)
@@ -17,6 +18,7 @@ export default class BasicInfo extends React.Component  {
         };
     }
 
+    //Processes changes in the input and sets them in state
     handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -24,12 +26,29 @@ export default class BasicInfo extends React.Component  {
         this.setState({
             [name] : value
         });
-        console.log(this.state);
     }
+
+    //Form validation, data cleanup, and sending to parent
+    validateAndSave = () => {
+        //TODO add form validation here
+
+        // Process constituent parts of time to prepare for event state
+        // I know this is whack, but our interface has time in 3 separate form inputs
+        const startTime = `${this.state.startHour}:${this.state.startMinute}`;
+        const endTime = `${this.state.endHour}:${this.state.endMinute}`;
+
+        this.setState({
+            startTime,
+            endTime
+        }, () => {
+            this.props.handler(this.state);
+        });
+    }
+
     render() {
         return (
             <Container className="BasicInfo">
-                <h3>Basic Info</h3>
+                <h5>Basic Info</h5>
                 <Form className="Form">
                     <Row>
                         <Col xs="6">
@@ -43,7 +62,7 @@ export default class BasicInfo extends React.Component  {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="privateDesc">Private Description</Label>
-                                    <Input name="publicDescription" type="textarea" id="privateDesc" rows="3" onChange={this.handleChange}/>
+                                    <Input name="privateDescription" type="textarea" id="privateDesc" rows="3" onChange={this.handleChange}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="numParticipants">Number of Participants</Label>
@@ -70,7 +89,7 @@ export default class BasicInfo extends React.Component  {
                             </Col>
                             :
                             <Col xs="6" sm="3">
-                                <Input name="minute" id="startMinute" placeholder="00" onChange={this.handleChange}/>
+                                <Input name="startMinute" id="startMinute" placeholder="00" onChange={this.handleChange}/>
                             </Col>
                             <Col sm="3">
                                 <FormGroup>
@@ -90,11 +109,11 @@ export default class BasicInfo extends React.Component  {
                             </Col>
                             :
                             <Col xs="6" sm="3">
-                                <Input name="endMinute" id="minute" placeholder="00" />
+                                <Input name="endMinute" id="endMinute" placeholder="00" onChange={this.handleChange}/>
                             </Col>
                             <Col sm="3">
                                 <FormGroup>
-                                    <Input type="select" name="endAmPm" id="endAmPm">
+                                    <Input type="select" name="endAmPm" id="endAmPm" onChange={this.handleChange}>
                                         <option>AM</option>
                                         <option>PM</option>
                                     </Input>
@@ -104,7 +123,7 @@ export default class BasicInfo extends React.Component  {
                     </Col>
                 </Row>
                 </Form>
-                <Button size="lg" className="Button">Next: Location ></Button>
+                <Button onClick={this.validateAndSave} className="Button">Next: Location ></Button>
             </Container>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Event } from '../services/eventServices';
+import BasicInfo from './epr/BasicInfo';
 
 export default class Epr extends React.Component {
     constructor(props) {
@@ -21,10 +22,20 @@ export default class Epr extends React.Component {
         this.setState({ supplements });
     }
 
+    basicInfoHandler = (basicInfo) => {
+        for(const info in basicInfo) {
+            if(basicInfo.hasOwnProperty(info) && this.state.hasOwnProperty(info)) {
+                this.setState({
+                    [info] : basicInfo[info]
+                });
+            }
+        }
+    }
+
     render() {
         return (
             <div>
-                <h1>Hello {this.org}</h1>
+                <BasicInfo handler={this.basicInfoHandler}></BasicInfo>
             </div>
         );
     }
