@@ -5,11 +5,8 @@ import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
 import Organization from "./pages/Organization";
 import NotFound from "./pages/NotFound";
-<<<<<<< HEAD
 import BasicInfo from "./components/epr/BasicInfo";
-=======
 import Epr from "./components/Epr";
->>>>>>> master
 
 function App() {
   return (
