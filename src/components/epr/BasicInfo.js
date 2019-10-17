@@ -30,10 +30,7 @@ export default class BasicInfo extends React.Component  {
 
     //Form validation, data cleanup, and sending to parent
     validateAndSave = () => {
-        //TODO add form validation here
-
         // Process constituent parts of time to prepare for event state
-        // I know this is whack, but our interface has time in 3 separate form inputs
         const startTime = `${this.state.startHour}:${this.state.startMinute}`;
         const endTime = `${this.state.endHour}:${this.state.endMinute}`;
 

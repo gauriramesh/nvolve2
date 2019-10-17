@@ -22,8 +22,8 @@ export default class Epr extends React.Component {
         this.setState({ supplements });
     }
 
-    basicInfoHandler = (basicInfo) => {
-        for(const info in basicInfo) {
+    infoHandler = (basicInfo) => {
+        for (const info in basicInfo) {
             if(basicInfo.hasOwnProperty(info) && this.state.hasOwnProperty(info)) {
                 this.setState({
                     [info] : basicInfo[info]
@@ -35,7 +35,7 @@ export default class Epr extends React.Component {
     render() {
         return (
             <div>
-                <BasicInfo handler={this.basicInfoHandler}></BasicInfo>
+                <BasicInfo handler={this.infoHandler}></BasicInfo>
             </div>
         );
     }
