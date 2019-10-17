@@ -57,7 +57,7 @@ export default class LocationForm extends React.Component {
 
         for (let i = 0; i < locations.length; i++) {
             jsx.push(
-                <Card key={i}>
+                <Card key={i} style={{marginTop: '20px'}}>
                     <CardHeader>
                         {locations[i].location}
                     </CardHeader>
