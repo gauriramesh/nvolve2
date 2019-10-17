@@ -9,20 +9,27 @@ export default class Epr extends React.Component {
         this.org = props.match.params.org;
 
         this.addLocation = this.addLocation.bind(this);
+        this.removeLocation = this.removeLocation.bind(this);
         this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
     }
 
-  addLocation(location) {
-    const { locations } = this.state;
-    locations.push(location);
-    this.setState({ locations });
-  }
+    addLocation(location) {
+        const { locations } = this.state;
+        locations.push(location);
+        this.setState({ locations });
+    }
 
-  addSupplement(supplement) {
-    const { supplements } = this.state;
-    supplements.push(supplement);
-    this.setState({ supplements });
-  }
+    removeLocation(index) {
+        const { locations } = this.state;
+        locations.splice(index, 1);
+        this.setState({ locations });
+    }
+
+    addSupplement(supplement) {
+        const { supplements } = this.state;
+        supplements.push(supplement);
+        this.setState({ supplements });
+    }
 
     setLocationAcknowledged(index, value) {
         const { locations } = this.state;
@@ -40,6 +47,7 @@ export default class Epr extends React.Component {
                     setLocationAcknowledged={this.setLocationAcknowledged}
                     locations={this.state.locations}
                     addLocation={this.addLocation}
+                    removeLocation={this.removeLocation}
                     />
             </div>
         );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardHeader, CardBody, Input, Label, FormGroup, Form } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardBody, Input, Label, FormGroup, Form, Badge } from 'reactstrap';
 import CreatableSelect from 'react-select/creatable';
 import { PossibleEventLocations, OnCampusEventLocation, OffCampusEventLocation } from '../services/eventServices';
 
@@ -49,7 +49,7 @@ export default class LocationForm extends React.Component {
 
         if (locations.length === 0) {
             return (
-                <h2>No locations added.</h2>
+                <h3 style={{ textAlign: 'center' }}>No locations added.</h3>
             );
         }
 
@@ -60,6 +60,7 @@ export default class LocationForm extends React.Component {
                 <Card key={i} style={{marginTop: '20px'}}>
                     <CardHeader>
                         {locations[i].location}
+                        <Badge color="danger" style={{ float: 'right' }} onClick={() => this.props.removeLocation(i)}>Remove</Badge>
                     </CardHeader>
                     
                     <CardBody>
