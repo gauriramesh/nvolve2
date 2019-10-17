@@ -1,0 +1,17 @@
+.BasicInfo {
+    background-color: #f5f1e7;
+    margin: 50px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.BasicInfo .Form {
+    padding: 20px;
+}
+
+.BasicInfo .Button {
+    margin: 20px;
+    float: right;
+    background-color: green;
+    border-color: green;
+}

@@ -5,11 +5,13 @@ import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
 import Organization from "./pages/Organization";
 import NotFound from "./pages/NotFound";
+import BasicInfo from "./components/epr/BasicInfo";
 
 function App() {
   return (
     <Router>
       <Nav />
+      <BasicInfo/>
       <Switch>
         <Route path="/organizations/:org" component={Organization} />
         <Route exact path="/" component={Dashboard} />
