@@ -60,7 +60,7 @@ export default class LocationForm extends React.Component {
                 <Card key={i} style={{marginTop: '20px'}}>
                     <CardHeader>
                         {locations[i].location}
-                        <Badge color="danger" style={{ float: 'right' }} onClick={() => this.props.removeLocation(i)}>Remove</Badge>
+                        <Badge color="danger" style={{ float: 'right', cursor: 'pointer' }} onClick={() => this.props.removeLocation(i)}>Remove</Badge>
                     </CardHeader>
                     
                     <CardBody>
