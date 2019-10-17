@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardHeader, CardBody, Input, Label } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardBody, Input, Label, FormGroup, Form } from 'reactstrap';
 import CreatableSelect from 'react-select/creatable';
 import { PossibleEventLocations, OnCampusEventLocation, OffCampusEventLocation } from '../services/eventServices';
 
@@ -10,32 +10,32 @@ export default class LocationForm extends React.Component {
         this.state = {
             currentlySelected: { label: '', value: '' }
         }
+
+        this.onSelect = this.onSelect.bind(this);
     }
 
-    onSelect(value, action) {
+    onSelect({ value }, { action }) {
         if (action === 'create-option') {
             this.props.addLocation(new OffCampusEventLocation(value));
         } else if (action === 'select-option') {
-            this.props.addLocation(new OnCampusEventLocation(value.value));
+            this.props.addLocation(new OnCampusEventLocation(value));
         }
 
         this.setState({ currentlySelected: value });
-    }
-
-    onAcknowledgeStudentAgreement(index) {
-        this.props.markLocationAsAcknowledged(index);
     }
 
     render() {
         return (
             <Container>
                 <Row>
-                    <Col sm={{ size: 8, offset: 2 }}>
+                    <Col sm={{ size: 10, offset: 1 }}>
                         <CreatableSelect
                             isClearable
                             options={PossibleEventLocations}
                             placeholder="Search for a room"
-                            value={this.state.currentlySelected} />
+                            value={this.state.currentlySelected}
+                            onChange={this.onSelect}
+                            formatCreateLabel={s => (<label>Add "{s}"</label>)} />
                         
                         {this.renderLocationList()}
                     </Col>
@@ -61,21 +61,31 @@ export default class LocationForm extends React.Component {
                     <CardHeader>
                         {locations[i].location}
                     </CardHeader>
-                    {locations[i].studentsOnlyRuleAcknowledged !== undefined &&
+                    
                     <CardBody>
-                        <Label check>
-                            <Input
-                                type="checkbox"
-                                onChange={e => this.props.setLocationAckowledged(i, e.target.checked)}
-                                checked={locations[i].studentsOnlyRuleAcknowledged}
-                                valid={locations[i].studentsOnlyRuleAcknowledged}
-                                />
-                            I certify that this room will only be used by UNL students and/or faculty.
-                        </Label>
+                        {locations[i].studentsOnlyRuleAcknowledged !== undefined &&
+                        <Form style={{marginLeft: '5px'}}>
+                            <FormGroup>
+                                <Input
+                                    id={'location-ack-' + i}
+                                    type="checkbox"
+                                    onChange={e => this.props.setLocationAcknowledged(i, e.target.checked)}
+                                    checked={locations[i].studentsOnlyRuleAcknowledged}
+                                    invalid={!locations[i].studentsOnlyRuleAcknowledged}
+                                    />
+                                <Label for={'location-ack-' + i} check>
+                                    I certify that this room will only be used by UNL students and/or faculty.
+                                </Label>
+                            </FormGroup>
+                        </Form>
+                        }
+                        {locations[i].studentsOnlyRuleAcknowledged === undefined &&
+                        <p>Off Campus Location</p>}
                     </CardBody>
-                    }
                 </Card>
-            )
+            );
         }
+
+        return jsx;
     }
 }

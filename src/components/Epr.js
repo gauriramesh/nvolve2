@@ -5,9 +5,12 @@ export default class Epr extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = new Event();
-    this.org = props.match.params.org;
-  }
+        this.state = new Event();
+        this.org = props.match.params.org;
+
+        this.addLocation = this.addLocation.bind(this);
+        this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
+    }
 
   addLocation(location) {
     const { locations } = this.state;
@@ -21,11 +24,24 @@ export default class Epr extends React.Component {
     this.setState({ supplements });
   }
 
-  render() {
-    return (
-      <div>
-        <h1>Hello {this.org}</h1>
-      </div>
-    );
-  }
+    setLocationAcknowledged(index, value) {
+        const { locations } = this.state;
+
+        locations[index].studentsOnlyRuleAcknowledged = value;
+
+        this.setState({ locations });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Hello {this.org}</h1>
+                <LocationForm
+                    setLocationAcknowledged={this.setLocationAcknowledged}
+                    locations={this.state.locations}
+                    addLocation={this.addLocation}
+                    />
+            </div>
+        );
+    }
 }
