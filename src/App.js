@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
 import Organization from "./pages/Organization";
 import NotFound from "./pages/NotFound";
+import Epr from "./components/Epr";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Nav />
       <Switch>
         <Route path="/organizations/:org" component={Organization} />
+        <Route path="/epr/:org" component={Epr} />
         <Route exact path="/" component={Dashboard} />
         <Route path="/" component={NotFound} />
       </Switch>
