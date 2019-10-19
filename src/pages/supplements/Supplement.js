@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Supplement.css";
 import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem } from "reactstrap";
 import Sofs from "./Sofs";
+import TravelInsurance from "./TravelInsurance"; 
 
 const SupplementOptions = {
     TRAVEL_INSURANCE: "Travel Insurance",
@@ -61,10 +62,12 @@ const Supplement = (props) => {
 
                 {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
+                {dropdownSelected === SupplementOptions.TRAVEL_INSURANCE && <TravelInsurance addSupplement={addSupplement} changeSelected={changeSelected} /> }
+
             </div>
 
             <div className="bottom-right">
-                <Button color="primary"> Submit and Continue to Review </Button> 
+                <Button color="primary" onClick={() => props.addSupplement(addedSupplements)}> Submit and Continue to Review </Button> 
             </div>
         </>
     );
