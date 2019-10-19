@@ -1,0 +1,11 @@
+.container {
+    margin-top: 5pt;
+    margin-left: 5pt; 
+    align-items: left; 
+}
+
+.bottom-right {
+    position: absolute; 
+    bottom: 20pt; 
+    right: 20pt; 
+}
