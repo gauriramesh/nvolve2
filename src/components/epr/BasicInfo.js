@@ -59,7 +59,7 @@ export default class BasicInfo extends React.Component  {
     }
 
     //Form validation, data cleanup, and sending to parent
-    validateAndSave = () => {
+    save = () => {
         const canProceed = this.validate();
 
         // If all forms filled, prepare info and send to master component
@@ -164,7 +164,7 @@ export default class BasicInfo extends React.Component  {
                     </Col>
                 </Row>
                 </Form>
-                <Button onClick={this.validateAndSave} color="primary" className="Button">Next: Location ></Button>
+                <Button onClick={this.save} color="primary" className="Button">Next: Location ></Button>
             </Container>
         );
     }
