@@ -1,7 +1,7 @@
 import React from "react";
 import "./BasicInfo.css";
 import { eventRepeatOptions } from "../../services/eventServices";
-import { Button, Container, Row, Col, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Container, Row, Col, Form, FormGroup, FormFeedback, Label, Input } from "reactstrap";
 
 export default class BasicInfo extends React.Component  {
     constructor(props) {
@@ -14,7 +14,20 @@ export default class BasicInfo extends React.Component  {
         }
 
         this.state = {
-            repeatCycle: "None"
+            repeatCycle: "None",
+            startAmPm : "AM",
+            endAmPm: "AM",
+            invalid: {
+                name: false,
+                publicDescription: false,
+                privateDescription: false,
+                numParticipants: false,
+                date: false,
+                startHour: false,
+                startMinute: false,
+                endHour: false,
+                endMinute: false
+            }
         };
     }
 
@@ -28,21 +41,43 @@ export default class BasicInfo extends React.Component  {
         });
     }
 
+    //Does basic check to see if all fields are occupied
+    validate = () => {
+        let isFullyValid = true;
+        let invalidCopy = JSON.parse(JSON.stringify(this.state.invalid));
+
+        for(let field in invalidCopy) {
+            if(!this.state[field]) {
+                invalidCopy[field] = true;
+                isFullyValid = false
+            }
+        }
+        this.setState({
+            invalid : invalidCopy
+        })
+        return isFullyValid;
+    }
+
     //Form validation, data cleanup, and sending to parent
     validateAndSave = () => {
-        // Process constituent parts of time to prepare for event state
-        const startTime = `${this.state.startHour}:${this.state.startMinute}`;
-        const endTime = `${this.state.endHour}:${this.state.endMinute}`;
+        const canProceed = this.validate();
 
-        this.setState({
-            startTime,
-            endTime
-        }, () => {
-            this.props.handler(this.state);
-        });
+        // If all forms filled, prepare info and send to master component
+        if(canProceed) {
+            const startTime = `${this.state.startHour}:${this.state.startMinute} ${this.state.startAmPm}`;
+            const endTime = `${this.state.endHour}:${this.state.endMinute} ${this.state.endAmPm}`;
+
+            this.setState({
+                startTime,
+                endTime
+            }, () => {
+                this.props.handler(this.state);
+            });
+        }
     }
 
     render() {
+        const validField = this.state.invalid;
         return (
             <Container className="BasicInfo">
                 <h5>Basic Info</h5>
@@ -51,19 +86,23 @@ export default class BasicInfo extends React.Component  {
                         <Col xs="6">
                                 <FormGroup>
                                     <Label for="eventTitle">Title</Label>
-                                    <Input name="name" id="eventTitle" placeholder="Your Event Title" onChange={this.handleChange}/>
+                                    <Input invalid={validField.name} name="name" id="eventTitle" placeholder="Your Event Title" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must specify event title.</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="publicDesc">Public Description</Label>
-                                    <Input name="publicDescription" type="textarea" id="publicDesc" rows="3" onChange={this.handleChange}/>
+                                    <Input invalid={validField.publicDescription} name="publicDescription" type="textarea" id="publicDesc" rows="3" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must have a public description.</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="privateDesc">Private Description</Label>
-                                    <Input name="privateDescription" type="textarea" id="privateDesc" rows="3" onChange={this.handleChange}/>
+                                    <Input invalid={validField.privateDescription} name="privateDescription" type="textarea" id="privateDesc" rows="3" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must have a private description.</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="numParticipants">Number of Participants</Label>
-                                    <Input name="numParticipants" id="numParticipants" placeholder="E.g. 40 or 5-10" onChange={this.handleChange}/>
+                                    <Input invalid={validField.numParticipants} name="numParticipants" id="numParticipants" placeholder="E.g. 40 or 5-10" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must specify the number of participants.</FormFeedback>
                                 </FormGroup>
                         </Col>
                         <Col xs="6">
@@ -75,18 +114,21 @@ export default class BasicInfo extends React.Component  {
                         </FormGroup>
                         <FormGroup>
                             <Label for="date">Date</Label>
-                            <Input name="date" id="date" placeholder="MM/DD/YYYY" onChange={this.handleChange} />
+                            <Input invalid={validField.date} name="date" id="date" placeholder="MM/DD/YYYY" onChange={this.handleChange} />
+                            <FormFeedback invalid>Must specify date.</FormFeedback>
                         </FormGroup>
                         <Label for="time">Start Time</Label>
                         <Row>
                             <Col xs="6" sm="3">
                                 <FormGroup>
-                                    <Input name="startHour" id="hour" placeholder="12" onChange={this.handleChange}/>
+                                    <Input invalid={validField.startHour} name="startHour" id="hour" placeholder="12" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must specify start hour.</FormFeedback>
                                 </FormGroup>
                             </Col>
                             :
                             <Col xs="6" sm="3">
-                                <Input name="startMinute" id="startMinute" placeholder="00" onChange={this.handleChange}/>
+                                <Input invalid={validField.startMinute} name="startMinute" id="startMinute" placeholder="00" onChange={this.handleChange}/>
+                                <FormFeedback invalid>Must specify start minute.</FormFeedback>
                             </Col>
                             <Col sm="3">
                                 <FormGroup>
@@ -101,12 +143,14 @@ export default class BasicInfo extends React.Component  {
                         <Row>
                             <Col xs="6" sm="3">
                                 <FormGroup>
-                                    <Input name="endHour" id="hour" placeholder="12" onChange={this.handleChange}/>
+                                    <Input invalid={validField.endHour} name="endHour" id="hour" placeholder="12" onChange={this.handleChange}/>
+                                    <FormFeedback invalid>Must specify end hour.</FormFeedback>
                                 </FormGroup>
                             </Col>
                             :
                             <Col xs="6" sm="3">
-                                <Input name="endMinute" id="endMinute" placeholder="00" onChange={this.handleChange}/>
+                                <Input invalid={validField.endMinute} name="endMinute" id="endMinute" placeholder="00" onChange={this.handleChange}/>
+                                <FormFeedback invalid>Must specify end minute.</FormFeedback>
                             </Col>
                             <Col sm="3">
                                 <FormGroup>
@@ -120,7 +164,7 @@ export default class BasicInfo extends React.Component  {
                     </Col>
                 </Row>
                 </Form>
-                <Button onClick={this.validateAndSave} className="Button">Next: Location ></Button>
+                <Button onClick={this.validateAndSave} color="primary" className="Button">Next: Location ></Button>
             </Container>
         );
     }
