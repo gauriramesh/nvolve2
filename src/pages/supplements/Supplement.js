@@ -44,7 +44,7 @@ const Supplement = (props) => {
                         <DropdownItem disabled={addedSupplements.TRAVEL_INSURANCE !== null} onClick={() => changeSelected(SupplementOptions.TRAVEL_INSURANCE)}>
                         {SupplementOptions.TRAVEL_INSURANCE}
                         </DropdownItem>
-                        <DropdownItem disabled={addedSupplements.SOFS !== null} onClick={() => changeSelected(SupplementOptions.SOFS)} disabled={addedSupplements.sofs} >
+                        <DropdownItem disabled={addedSupplements.SOFS !== null} onClick={() => changeSelected(SupplementOptions.SOFS)} >
                         {SupplementOptions.SOFS}
                         </DropdownItem>
                     </DropdownMenu>
@@ -70,7 +70,7 @@ const Supplement = (props) => {
             </div>
 
             <div className="bottom-right">
-                <Button color="primary" onClick={() => props.updateSupplements(addedSupplements)}> Submit and Continue to Review </Button> 
+                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => props.updateSupplements(addedSupplements)}> Submit and Continue to Review </Button> 
             </div>
         </>
     );
