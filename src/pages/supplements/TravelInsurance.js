@@ -14,8 +14,10 @@ const TravelInsurance = (props) => {
             <Label for="passengers">Passenger Names</Label>
             <Input type="textarea" id="passengers" onChange={text => setTravelInsuranceSupplement(prev => ({...prev, passengers: text}))}/>
 
+            <hr /> 
+            
             <ButtonGroup> 
-                <Button color="secondary">Cancel</Button>
+                <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
                 <Button color="primary" onClick={() => {props.addSupplement("TRAVEL_INSURANCE", travelInsuranceSupplement); props.changeSelected("None"); }} 
                 disabled={!(travelInsuranceSupplement.driver && travelInsuranceSupplement.passengers)}>Add</Button>
             </ButtonGroup>

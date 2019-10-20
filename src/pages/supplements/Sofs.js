@@ -14,8 +14,10 @@ const Sofs = (props) => {
             <Label for="budgetUpload">Please upload your budget</Label>
             <Input type="file" id="budgetUpload" onChange={file => setSofsSupplement(prev => ({...prev, budgetFile: file}))}/>
 
+            <hr />
+
             <ButtonGroup> 
-                <Button color="secondary">Cancel</Button>
+                <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
                 <Button color="primary" onClick={() => {props.addSupplement("SOFS", sofsSupplement); props.changeSelected("None"); }} disabled={!(sofsSupplement.budgetDescription && sofsSupplement.budgetFile)}>Add</Button>
             </ButtonGroup>
         </Form>

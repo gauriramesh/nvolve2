@@ -1,6 +1,6 @@
 import React, { useState } from "react"; 
 import "./Supplement.css";
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem } from "reactstrap";
+import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } from "reactstrap";
 import Sofs from "./Sofs";
 import TravelInsurance from "./TravelInsurance"; 
 
@@ -24,10 +24,10 @@ const Supplement = (props) => {
 
         return Object.keys(addedSupplements).map(element => {
             return addedSupplements[element] ? (
-                <ListGroupItem key={element}> 
-                    {SupplementOptions[element]} 
-                    <Button onClick={() => removeSupplement(element)}>Remove</Button>
-                </ListGroupItem>
+                <tr>    
+                    <td>{SupplementOptions[element]}</td>
+                    <td><Button onClick={() => removeSupplement(element)}>Remove</Button></td>
+                </tr>
             ) : null;
         }); 
 
@@ -41,10 +41,10 @@ const Supplement = (props) => {
                         {dropdownSelected}
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={() => changeSelected(SupplementOptions.TRAVEL_INSURANCE)}>
+                        <DropdownItem disabled={addedSupplements.TRAVEL_INSURANCE !== null} onClick={() => changeSelected(SupplementOptions.TRAVEL_INSURANCE)}>
                         {SupplementOptions.TRAVEL_INSURANCE}
                         </DropdownItem>
-                        <DropdownItem onClick={() => changeSelected(SupplementOptions.SOFS)} disabled={addedSupplements.sofs} >
+                        <DropdownItem disabled={addedSupplements.SOFS !== null} onClick={() => changeSelected(SupplementOptions.SOFS)} disabled={addedSupplements.sofs} >
                         {SupplementOptions.SOFS}
                         </DropdownItem>
                     </DropdownMenu>
@@ -54,10 +54,13 @@ const Supplement = (props) => {
             <div className="container">
                
                 {dropdownSelected === "None" && 
-                    <ListGroup flush> 
-                        <ListGroupItem color="info">Added Supplements</ListGroupItem>
+                    <Table striped> 
+                        <tr>
+                            <th>Supplement</th>
+                            <th>Actions</th>
+                        </tr>
                         <SupplementList />
-                    </ListGroup>
+                    </Table>
                 }
 
                 {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} /> }
@@ -67,7 +70,7 @@ const Supplement = (props) => {
             </div>
 
             <div className="bottom-right">
-                <Button color="primary" onClick={() => props.addSupplement(addedSupplements)}> Submit and Continue to Review </Button> 
+                <Button color="primary" onClick={() => props.updateSupplements(addedSupplements)}> Submit and Continue to Review </Button> 
             </div>
         </>
     );
