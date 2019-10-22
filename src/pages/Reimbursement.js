@@ -100,6 +100,7 @@ export default class ReimbursementForm extends React.Component{
 							<option>Trip to the Dairy Farm</option>
 							<option>Cheese Tasting</option>
 						</Input>
+						<FormFeedback invalid="true">Please select an event.</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="eventDescription">Description:</Label>
@@ -109,12 +110,12 @@ export default class ReimbursementForm extends React.Component{
 					<FormGroup>
 						<Label for="payTo">Pay To:</Label>
 						<Input type="text" name="payTo" id="payTo" value={this.state.payTo} onChange={this.handleChange} invalid={!this.state.payToValid}/>
-						<FormFeedback invalid="true">Please provide the recipient of the reimbursement</FormFeedback>
+						<FormFeedback invalid="true">Please provide the recipient of the reimbursement.</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="amount">Amount:</Label>
 						<Input type="text" name="amount" id="amount" value={this.state.amount} onChange={this.handleChange} invalid={!this.state.amountValid}/>
-						<FormFeedback invalid="true">Please provide a valid dollar amount (numeric value, no more than 2 digits after the decimal point)</FormFeedback>
+						<FormFeedback invalid="true">Please provide a valid dollar amount (numeric value, no more than 2 digits after the decimal point).</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="uploadReceipt">Upload Receipt:</Label>
@@ -122,13 +123,13 @@ export default class ReimbursementForm extends React.Component{
 						<FormText color="muted">
 							Please upload a digital copy of the receipt in one of the following formats: .png, .jpg, .jpeg, .pdf 
 						</FormText>
-						<FormFeedback invalid="true">Please upload a file in one of the following formats: .png, .jpg, .jpeg, .pdf</FormFeedback>
+						<FormFeedback invalid="true">Please upload a file in one of the following formats: .png, .jpg, .jpeg, .pdf.</FormFeedback>
 					</FormGroup>
 					<FormGroup tag="fieldset">
 						<legend id="deliveryFormatLabel">Delivery Format:</legend>
 						<FormGroup check>
 							<Label check>
-								<Input type="radio" name="radio1" id="mail" checked/>{' '}
+								<Input type="radio" name="radio1" id="mail" defaultChecked/>{' '}
 								Mail
 							</Label>
 						</FormGroup>
