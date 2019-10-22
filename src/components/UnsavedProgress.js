@@ -11,7 +11,9 @@ const UnsavedProgress = props => {
 
   return (
     <Modal isOpen={open}>
-      <ModalHeader className="unsaved-progress-text">Are you sure you want to leave?</ModalHeader>
+      <ModalHeader className="unsaved-progress-text">
+        Are you sure you want to leave?
+      </ModalHeader>
       <ModalBody className="unsaved-progress-text">
         Hey there!
         <br />
