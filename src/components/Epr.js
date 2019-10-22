@@ -1,5 +1,6 @@
 import React from 'react';
 import { Event } from '../services/eventServices';
+import ProgressBar from "./ProgressBar";
 
 export default class Epr extends React.Component {
     constructor(props) {
@@ -21,9 +22,12 @@ export default class Epr extends React.Component {
         this.setState({ supplements });
     }
 
+    setCurrentPage
+
     render() {
         return (
             <div>
+                <ProgressBar/>
                 <h1>Hello {this.org}</h1>
             </div>
         );
