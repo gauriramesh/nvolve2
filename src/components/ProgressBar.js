@@ -17,8 +17,8 @@ class ProgressBar extends React.Component {
 
   render() {
     return (
-      <div className="msform">
-          <ul id="progressbar">
+      <div className="progressBarContainer">
+          <ul id="progressBar">
               <li id="basicInfo">Basic Info</li>
               <li id="location">Location</li>
               <li id="supplements">supplements</li>

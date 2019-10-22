@@ -47,7 +47,7 @@ export default class LocationForm extends React.Component {
   render() {
     return (
         <div>
-            <ProgressBar currentPage={PageOptions.location}></ProgressBar>
+            <ProgressBar currentPage={PageOptions.supplements}></ProgressBar>
             <Container>
                 <Row>
                 <Col sm={{ size: 10, offset: 1 }}>
