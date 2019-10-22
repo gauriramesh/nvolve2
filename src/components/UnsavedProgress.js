@@ -11,8 +11,8 @@ const UnsavedProgress = props => {
 
   return (
     <Modal isOpen={open}>
-      <ModalHeader>Are you sure you want to leave?</ModalHeader>
-      <ModalBody>
+      <ModalHeader className="unsaved-progress-text">Are you sure you want to leave?</ModalHeader>
+      <ModalBody className="unsaved-progress-text">
         Hey there!
         <br />
         <br />
@@ -20,7 +20,7 @@ const UnsavedProgress = props => {
         changes. Are you sure you want to leave this page? The information
         entered into the form will be lost.
       </ModalBody>
-      <ModalFooter>
+      <ModalFooter className="unsaved-progress-text">
         <Button color="secondary" onClick={() => setRedirect(true)}>
           Leave
         </Button>
