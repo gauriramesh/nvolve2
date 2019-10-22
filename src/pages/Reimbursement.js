@@ -140,7 +140,9 @@ export default class ReimbursementForm extends React.Component{
 							</Label>
 						</FormGroup>
 					</FormGroup>
-					<Button color="primary" onClick={this.handleSubmit}>Submit</Button>
+					<Label for="submitButton">NOTE: This will be sent to your advisor for approval</Label>
+					<br />
+					<Button color="primary" id="submitButton" name="submitButton" onClick={this.handleSubmit}>Submit</Button>
 				</Form>
 			</Container>
 			);
