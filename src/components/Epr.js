@@ -1,35 +1,58 @@
-import React from 'react';
-import { Event } from '../services/eventServices';
+import React from "react";
+import { Event } from "../services/eventServices";
+import LocationForm from "../components/LocationForm";
 import ProgressBar from "./ProgressBar";
 
 export default class Epr extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = new Event();
-        this.org = props.match.params.org;
-    }
+    this.state = new Event();
+    this.org = props.match.params.org;
 
-    addLocation(location) {
-        const { locations } = this.state;
-        locations.push(location);
-        this.setState({ locations });
-    }
+    this.addLocation = this.addLocation.bind(this);
+    this.removeLocation = this.removeLocation.bind(this);
+    this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
+  }
 
-    addSupplement(supplement) {
-        const { supplements } = this.state;
-        supplements.push(supplement);
-        this.setState({ supplements });
-    }
+  addLocation(location) {
+    const { locations } = this.state;
+    locations.push(location);
+    this.setState({ locations });
+  }
 
-    setCurrentPage
+  removeLocation(index) {
+    const { locations } = this.state;
+    locations.splice(index, 1);
+    this.setState({ locations });
+  }
 
-    render() {
-        return (
-            <div>
-                <ProgressBar/>
-                <h1>Hello {this.org}</h1>
-            </div>
-        );
-    }
+  addSupplement(supplement) {
+    const { supplements } = this.state;
+    supplements.push(supplement);
+    this.setState({ supplements });
+  }
+
+  setLocationAcknowledged(index, value) {
+    const { locations } = this.state;
+
+    locations[index].studentsOnlyRuleAcknowledged = value;
+
+    this.setState({ locations });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello {this.org}</h1>
+        <ProgressBar></ProgressBar>
+        <LocationForm
+          setLocationAcknowledged={this.setLocationAcknowledged}
+          locations={this.state.locations}
+          addLocation={this.addLocation}
+          removeLocation={this.removeLocation}
+        />
+      </div>
+    );
+  }
 }
