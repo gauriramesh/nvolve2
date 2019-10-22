@@ -1,6 +1,7 @@
 import React from 'react';
 import { Event } from '../services/eventServices';
 import BasicInfo from './epr/BasicInfo';
+import Review from './epr/Review';
 
 export default class Epr extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ export default class Epr extends React.Component {
         return (
             <div>
                 <BasicInfo handler={this.infoHandler}></BasicInfo>
+                <Review info={this.state}></Review>
             </div>
         );
     }
