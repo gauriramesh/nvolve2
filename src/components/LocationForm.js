@@ -16,8 +16,10 @@ import CreatableSelect from "react-select/creatable";
 import {
   PossibleEventLocations,
   OnCampusEventLocation,
-  OffCampusEventLocation
+  OffCampusEventLocation,
+  PageOptions
 } from "../services/eventServices";
+import ProgressBar from "./ProgressBar"
 
 export default class LocationForm extends React.Component {
   constructor(props) {
@@ -44,22 +46,25 @@ export default class LocationForm extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col sm={{ size: 10, offset: 1 }}>
-            <CreatableSelect
-              isClearable
-              options={PossibleEventLocations}
-              placeholder="Search for a room"
-              value={this.state.currentlySelected}
-              onChange={this.onSelect}
-              formatCreateLabel={s => <label>Add "{s}"</label>}
-            />
+        <div>
+            <ProgressBar currentPage={PageOptions.location}></ProgressBar>
+            <Container>
+                <Row>
+                <Col sm={{ size: 10, offset: 1 }}>
+                    <CreatableSelect
+                    isClearable
+                    options={PossibleEventLocations}
+                    placeholder="Search for a room"
+                    value={this.state.currentlySelected}
+                    onChange={this.onSelect}
+                    formatCreateLabel={s => <label>Add "{s}"</label>}
+                    />
 
-            {this.renderLocationList()}
-          </Col>
-        </Row>
-      </Container>
+                    {this.renderLocationList()}
+                </Col>
+                </Row>
+            </Container>
+        </div>
     );
   }
 

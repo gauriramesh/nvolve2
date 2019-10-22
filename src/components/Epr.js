@@ -1,7 +1,6 @@
 import React from "react";
 import { Event } from "../services/eventServices";
 import LocationForm from "../components/LocationForm";
-import ProgressBar from "./ProgressBar";
 
 export default class Epr extends React.Component {
   constructor(props) {
@@ -45,7 +44,6 @@ export default class Epr extends React.Component {
     return (
       <div>
         <h1>Hello {this.org}</h1>
-        <ProgressBar></ProgressBar>
         <LocationForm
           setLocationAcknowledged={this.setLocationAcknowledged}
           locations={this.state.locations}

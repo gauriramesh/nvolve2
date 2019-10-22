@@ -1,21 +1,28 @@
 import React from "react";
 import "./ProgressBar.css";
+import { PageOptions } from "../services/eventServices";
 
 class ProgressBar extends React.Component {
-  constructor(props) {
-    super(props);
 
+  componentDidMount() {
     const currentPage = this.props.currentPage;
-    document.getElementById(currentPage).classList.add("active");
+    const pageArr = Object.values(PageOptions);
+    for(let i = 0; i < pageArr.length; i++) {
+      document.getElementById(pageArr[i]).classList.add("active");
+      if(pageArr[i] === currentPage) {
+        break;
+      }
+    }
   }
+
   render() {
     return (
       <div className="msform">
           <ul id="progressbar">
-                      <li ref="basicInfo" class="active">Basic Info</li>
-                      <li ref="location">Location</li>
-                      <li ref="supplements">supplements</li>
-                      <li ref="review">Review and Submit</li>
+              <li id="basicInfo">Basic Info</li>
+              <li id="location">Location</li>
+              <li id="supplements">supplements</li>
+              <li id="review">Review and Submit</li>
           </ul>
       </div>
     );
