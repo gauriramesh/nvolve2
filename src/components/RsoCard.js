@@ -5,7 +5,6 @@ import {
   Container,
   Row,
   Col,
-  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -87,23 +86,30 @@ class RsoCard extends React.Component {
                 </DropdownMenu>
               </Dropdown>
               {this.state.eprRedirect && (
-                <Redirect to={`${this.props.rsoIdentifier}/epr`} />
+                <Redirect
+                  to={`/organizations/${this.props.rsoIdentifier}/epr`}
+                />
               )}
               {this.state.reimbursementRedirect && (
-                <Redirect to={`${this.props.rsoIdentifier}/reimbursement`} />
+                <Redirect
+                  to={`/organizations/${this.props.rsoIdentifier}/reimbursement`}
+                />
               )}
             </div>
           </Col>
           <Col md="3">
             <div className="goto-org">
-              <Link className="goto-link">
+              <Link
+                to={`/organizations/${this.props.rsoIdentifier}/`}
+                className="goto-link"
+              >
                 <Send
                   className="goto-icon"
-                  width="100px"
-                  height="100px"
-                  fill="#000"
+                  width="64px"
+                  height="64px"
+                  fill="#6c757d"
                 />
-                <p className="goto-link-text">Go to Organization</p>
+                <span className="goto-link-text">Go to Organization</span>
               </Link>
             </div>
           </Col>
