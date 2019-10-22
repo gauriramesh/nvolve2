@@ -23,14 +23,9 @@ export function getRsoInfo(rsoName) {
 }
 
 export class Rso {
-<<<<<<< HEAD
   constructor(name, identifier, role, sofsBalance) {
     this.name = name;
     this.identifier = identifier;
-=======
-  constructor(name, role, sofsBalance) {
-    this.name = name;
->>>>>>> master
     this.role = role;
     this.sofsBalance = sofsBalance;
   }
