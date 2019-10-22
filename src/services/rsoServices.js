@@ -4,9 +4,19 @@ export function getRsos() {
 
 export function getRsoInfo(rsoName) {
   if (rsoName === "Nebraskans For Cheese") {
-    return new Rso("Nebraskans For Cheese", "nebraskansforcheese", "Treasurer", 428);
+    return new Rso(
+      "Nebraskans For Cheese",
+      "nebraskansforcheese",
+      "Treasurer",
+      428
+    );
   } else if (rsoName === "Scott Frost Appreciation Club") {
-    return new Rso("Scott Frost Appreciation Club", "scottfrostappreciationclub", "President", 322);
+    return new Rso(
+      "Scott Frost Appreciation Club",
+      "scottfrostappreciationclub",
+      "President",
+      322
+    );
   }
 
   return undefined;
@@ -15,7 +25,7 @@ export function getRsoInfo(rsoName) {
 export class Rso {
   constructor(name, identifier, role, sofsBalance) {
     this.name = name;
-    this.identifier = identifier; 
+    this.identifier = identifier;
     this.role = role;
     this.sofsBalance = sofsBalance;
   }

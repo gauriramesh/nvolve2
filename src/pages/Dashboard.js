@@ -10,9 +10,8 @@ import NotificationCard from "../components/NotificationCard.js";
 import { getNotifications } from "../services/notificationServices.js";
 
 const Dashboard = () => {
-
-  const rsos = getRsos().map(rso => getRsoInfo(rso)); 
-  const notifications = getNotifications(); 
+  const rsos = getRsos().map(rso => getRsoInfo(rso));
+  const notifications = getNotifications();
 
   return (
     <Container>
@@ -25,17 +24,32 @@ const Dashboard = () => {
         <Col lg="8">
           <h6>MEMBERSHIPS</h6>
           <div className="mt-3">
-            { rsos.map((rso, i) => {
-              return(<div className="my-3"><RsoCard rsoName={rso.name} rsoIdentifier={rso.identifier} key={i}/></div>); 
-            })
-          }
+            {rsos.map((rso, i) => {
+              return (
+                <div className="my-3">
+                  <RsoCard
+                    rsoName={rso.name}
+                    rsoIdentifier={rso.identifier}
+                    key={i}
+                  />
+                </div>
+              );
+            })}
           </div>
         </Col>
         <Col lg="4">
           <h6>NOTIFICATIONS ({notifications.length})</h6>
           <div className="mt-3">
-            { notifications.map((notification, i) => {
-              return(<div className="my-3"><NotificationCard title={notification.title} content={notification.content} rso={notification.rso}/></div>)
+            {notifications.map((notification, i) => {
+              return (
+                <div className="my-3">
+                  <NotificationCard
+                    title={notification.title}
+                    content={notification.content}
+                    rso={notification.rso}
+                  />
+                </div>
+              );
             })}
           </div>
         </Col>
