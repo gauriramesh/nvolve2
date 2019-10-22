@@ -6,7 +6,7 @@ export default class ReimbursementForm extends React.Component{
 		super(props);
 		this.state = {
 			event: '',
-			description: 'test',
+			description: '',
 			payTo: '',
 			amount: '',
 			file: '',
@@ -70,11 +70,15 @@ export default class ReimbursementForm extends React.Component{
 		return fp.endsWith('.pdf') || fp.endsWith('.png') || fp.endsWith('.jpg') || fp.endsWith('.jpeg');
 	}
 
+	isValidAmount(val) {
+		return (!isNaN(val) || (val.charAt(0) == '$' && !isNaN(val.substring(1)))) && (val.indexOf('.') < 0 || val.substring(val.indexOf('.')).length <= 3);
+	}
+
 	validateInput() {
 		this.state.eventValid = this.isNotEmpty(this.state.event);
 		this.state.descriptionValid = this.isNotEmpty(this.state.description);
 		this.state.payToValid = this.isNotEmpty(this.state.payTo);
-		this.state.amountValid = this.isNotEmpty(this.state.amount);
+		this.state.amountValid = this.isNotEmpty(this.state.amount) && this.isValidAmount(this.state.amount);
 		this.state.fileValid = this.isNotEmpty(this.state.file) && this.isValidFileFormat(this.state.file);
 		this.state.deliveryFormatValid = (this.state.mail == 'on' || this.state.sofs == 'on') && !(this.state.mail == 'on' && this.state.sofs == 'on');
 	}
@@ -85,8 +89,11 @@ export default class ReimbursementForm extends React.Component{
 				<Form>
 					<FormGroup>
 						<Label for="eventSelect">Event:</Label>
-						<Input type="select" name="eventSelect" id="eventSelect" value={this.state.event} onChange={this.handleChange}>
-							<option>Test</option>
+						<Input type="select" name="eventSelect" id="eventSelect" value={this.state.event} onChange={this.handleChange} placeholder="Choose an event">
+							<option></option>
+							<option>Trip to the UNL Dairy Store</option>
+							<option>Trip to the Dairy Farm</option>
+							<option>Cheese Tasting</option>
 						</Input>
 					</FormGroup>
 					<FormGroup>
