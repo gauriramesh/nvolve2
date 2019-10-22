@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Dashboard from "./pages/Dashboard";
 import Organization from "./pages/Organization";
 import NotFound from "./pages/NotFound";
+import Reimbursement from "./pages/Reimbursement";
 import Epr from "./components/Epr";
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         <Route path="/organizations/:org" component={Organization} />
         <Route path="/epr/:org" component={Epr} />
         <Route exact path="/" component={Dashboard} />
-        <Route path="/" component={NotFound} />
+		<Route path="/reimbursement" component={Reimbursement} />
+        <Route path="/" component={NotFound} />		
       </Switch>
     </Router>
   );
