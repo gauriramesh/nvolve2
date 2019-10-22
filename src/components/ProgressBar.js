@@ -19,10 +19,10 @@ class ProgressBar extends React.Component {
     return (
       <div className="progressBarContainer">
           <ul id="progressBar">
-              <li id="basicInfo">Basic Info</li>
-              <li id="location">Location</li>
-              <li id="supplements">supplements</li>
-              <li id="review">Review and Submit</li>
+              <li id={PageOptions.basicInfo}>Basic Info</li>
+              <li id={PageOptions.location}>Location</li>
+              <li id={PageOptions.supplements}>supplements</li>
+              <li id={PageOptions.review}>Review and Submit</li>
           </ul>
       </div>
     );
