@@ -14,7 +14,9 @@ export default class LocationForm extends React.Component {
         this.onSelect = this.onSelect.bind(this);
     }
 
-    onSelect({ value }, { action }) {
+    onSelect(element, { action }) {
+        if (!element) return;
+        const value = element.value;
         if (action === 'create-option') {
             this.props.addLocation(new OffCampusEventLocation(value));
         } else if (action === 'select-option') {
