@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Form, FormGroup, FormText, Input, Label, FormFeedback } from "reactstrap";
+import "./Reimbursement.css";
 
 export default class ReimbursementForm extends React.Component{
 	constructor(props) {
@@ -10,16 +11,15 @@ export default class ReimbursementForm extends React.Component{
 			payTo: '',
 			amount: '',
 			file: '',
-			mail: false,
-			sofs: false,
-			eventValid: false,
-			descriptionValid: false,
-			payToValid: false,
-			amountValid: false,
-			fileValid: false,
-			deliveryFormatValid: false
+			mail: true,
+			sofs: 'off',
+			eventValid: true,
+			descriptionValid: true,
+			payToValid: true,
+			amountValid: true,
+			fileValid: true,
+			deliveryFormatValid: true,
 		}
-
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -53,7 +53,6 @@ export default class ReimbursementForm extends React.Component{
 			default:
 				break;
 		}
-		console.log(event.target.id + ": " + event.target.value);
 		this.setState({[field]: event.target.value});
 	}
 
@@ -75,21 +74,27 @@ export default class ReimbursementForm extends React.Component{
 	}
 
 	validateInput() {
-		this.state.eventValid = this.isNotEmpty(this.state.event);
-		this.state.descriptionValid = this.isNotEmpty(this.state.description);
-		this.state.payToValid = this.isNotEmpty(this.state.payTo);
-		this.state.amountValid = this.isNotEmpty(this.state.amount) && this.isValidAmount(this.state.amount);
-		this.state.fileValid = this.isNotEmpty(this.state.file) && this.isValidFileFormat(this.state.file);
-		this.state.deliveryFormatValid = (this.state.mail == 'on' || this.state.sofs == 'on') && !(this.state.mail == 'on' && this.state.sofs == 'on');
+		this.setState({eventValid: this.isNotEmpty(this.state.event)});
+		this.setState({descriptionValid: this.isNotEmpty(this.state.description)});
+		this.setState({payToValid: this.isNotEmpty(this.state.payTo)});
+		this.setState({amountValid: (this.isNotEmpty(this.state.amount) && this.isValidAmount(this.state.amount))});
+		this.setState({fileValid: this.isNotEmpty(this.state.file) && this.isValidFileFormat(this.state.file)});
+		this.setState({deliveryFormatValid: (this.state.mail === 'on' && this.state.sofs === 'off') || (this.state.mail === 'off' && this.state.sofs === 'on')});
+		console.log((this.state.mail === 'on' && this.state.sofs === 'off') || (this.state.mail === 'off' && this.state.sofs === 'on'));
 	}
 
 	render() {
 		return (
 			<Container>
+				<h3>File a Reimbursement</h3>
+				<br />
+
+				<p><b>Organization:</b> Nebraskans for Cheese</p>
+				<p><b>SOFS Number:</b> 1234</p>
 				<Form>
 					<FormGroup>
 						<Label for="eventSelect">Event:</Label>
-						<Input type="select" name="eventSelect" id="eventSelect" value={this.state.event} onChange={this.handleChange} placeholder="Choose an event">
+						<Input type="select" name="eventSelect" id="eventSelect" value={this.state.event} onChange={this.handleChange} invalid={!this.state.eventValid} placeholder="Choose an event">
 							<option></option>
 							<option>Trip to the UNL Dairy Store</option>
 							<option>Trip to the Dairy Farm</option>
@@ -98,39 +103,43 @@ export default class ReimbursementForm extends React.Component{
 					</FormGroup>
 					<FormGroup>
 						<Label for="eventDescription">Description:</Label>
-						<Input type="textarea" name="eventDescription" id="eventDescription" value={this.state.description} onChange={this.handleChange}/>
+						<Input type="textarea" name="eventDescription" id="eventDescription" value={this.state.description} onChange={this.handleChange} invalid={!this.state.descriptionValid}/>
+						<FormFeedback invalid="true">Please provide a description of what the funds were used for.</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="payTo">Pay To:</Label>
-						<Input type="text" name="payTo" id="payTo" value={this.state.payTo} onChange={this.handleChange}/>
+						<Input type="text" name="payTo" id="payTo" value={this.state.payTo} onChange={this.handleChange} invalid={!this.state.payToValid}/>
+						<FormFeedback invalid="true">Please provide the recipient of the reimbursement</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="amount">Amount:</Label>
-						<Input type="text" name="amount" id="amount" value={this.state.amount} onChange={this.handleChange}/>
+						<Input type="text" name="amount" id="amount" value={this.state.amount} onChange={this.handleChange} invalid={!this.state.amountValid}/>
+						<FormFeedback invalid="true">Please provide a valid dollar amount (numeric value, no more than 2 digits after the decimal point)</FormFeedback>
 					</FormGroup>
 					<FormGroup>
 						<Label for="uploadReceipt">Upload Receipt:</Label>
-						<Input type="file" name="uploadReceipt" id="uploadReceipt" value={this.state.file} onChange={this.handleChange}/>
+						<Input type="file" name="uploadReceipt" id="uploadReceipt" value={this.state.file} onChange={this.handleChange} invalid={!this.state.fileValid}/>
 						<FormText color="muted">
-							Please upload a digital copy of the reciept in one of the following formats: .png, .jpg, .jpeg, .pdf 
+							Please upload a digital copy of the receipt in one of the following formats: .png, .jpg, .jpeg, .pdf 
 						</FormText>
+						<FormFeedback invalid="true">Please upload a file in one of the following formats: .png, .jpg, .jpeg, .pdf</FormFeedback>
 					</FormGroup>
 					<FormGroup tag="fieldset">
-						<legend>Delivery Format:</legend>
+						<legend id="deliveryFormatLabel">Delivery Format:</legend>
 						<FormGroup check>
 							<Label check>
-								<Input type="radio" name="radio1" id="mail" onChange={this.handleChange}/>{' '}
+								<Input type="radio" name="radio1" id="mail" checked/>{' '}
 								Mail
 							</Label>
 						</FormGroup>
 						<FormGroup check>
 							<Label check>
-								<Input type="radio" name="radio1" id="sofs" onChange={this.handleChange}/>{' '}
+								<Input type="radio" name="radio1" id="sofs" />{' '}
 								Pick up at SOFS Office
 							</Label>
 						</FormGroup>
 					</FormGroup>
-					<Button onClick={this.handleSubmit}>Submit</Button>
+					<Button color="primary" onClick={this.handleSubmit}>Submit</Button>
 				</Form>
 			</Container>
 			);
