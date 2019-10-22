@@ -38,7 +38,7 @@
     margin: 0 auto 10px auto;
 }
 
-/*progressbar connectors*/
+/*progressBar connectors*/
 #progressBar li:after {
     content: '';
     width: 100%;
@@ -56,7 +56,7 @@
 }
 
 /*marking active/completed steps green*/
-#progressBar li.active:before, #progressbar li.active:after {
+#progressBar li.active:before, #progressBar li.active:after {
     background: green;
     color: white;
 }
