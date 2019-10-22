@@ -7,12 +7,20 @@ const TravelInsurance = (props) => {
     return (
         <Form>
             <Label for="driver">Driver Name</Label>
-            <Input id="driver" onChange={text => setTravelInsuranceSupplement(prev => ({...prev, driver: text}))}/>
+            <Input id="driver" onChange={event => 
+            {
+                event.persist(); 
+                setTravelInsuranceSupplement(prev => ({...prev, driver: event.target.value}))}
+            }/>
 
             <hr />
 
             <Label for="passengers">Passenger Names</Label>
-            <Input type="textarea" id="passengers" onChange={text => setTravelInsuranceSupplement(prev => ({...prev, passengers: text}))}/>
+            <Input type="textarea" id="passengers" onChange={event => 
+            {
+                event.persist();  
+                setTravelInsuranceSupplement(prev => ({...prev, passengers: event.target.value}))}
+            }/>
 
             <hr /> 
             

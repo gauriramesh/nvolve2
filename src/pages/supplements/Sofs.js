@@ -7,12 +7,20 @@ const Sofs = (props) => {
     return (
         <Form>
             <Label for="budgetDescription">Budget Description</Label>
-            <Input type="textarea" id="budgetDescription" onChange={text => setSofsSupplement(prev => ({...prev, budgetDescription: text}))}/>
+            <Input type="textarea" id="budgetDescription" onChange={event => 
+            {
+                event.persist(); 
+                setSofsSupplement(prev => ({...prev, budgetDescription: event.target.value})) }
+            }/>
 
             <hr />
 
             <Label for="budgetUpload">Please upload your budget</Label>
-            <Input type="file" id="budgetUpload" onChange={file => setSofsSupplement(prev => ({...prev, budgetFile: file}))}/>
+            <Input type="file" id="budgetUpload" onChange={event => 
+                {
+                    event.persist(); 
+                    setSofsSupplement(prev => ({...prev, budgetFile: event.target.value}))}
+                }/>
 
             <hr />
 

@@ -24,7 +24,7 @@ const Supplement = (props) => {
 
         return Object.keys(addedSupplements).map(element => {
             return addedSupplements[element] ? (
-                <tr>    
+                <tr key={SupplementOptions[element]}>    
                     <td>{SupplementOptions[element]}</td>
                     <td><Button onClick={() => removeSupplement(element)}>Remove</Button></td>
                 </tr>
@@ -55,11 +55,15 @@ const Supplement = (props) => {
                
                 {dropdownSelected === "None" && 
                     <Table striped> 
-                        <tr>
-                            <th>Supplement</th>
-                            <th>Actions</th>
-                        </tr>
-                        <SupplementList />
+                        <thead>
+                            <tr> 
+                                <th>Supplement</th>
+                                <th>Actions</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                            <SupplementList />
+                        </tbody>
                     </Table>
                 }
 
