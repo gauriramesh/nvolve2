@@ -1,5 +1,6 @@
 import React from "react";
 import { Event } from "../services/eventServices";
+import LocationForm from "../components/LocationForm";
 
 export default class Epr extends React.Component {
   constructor(props) {
