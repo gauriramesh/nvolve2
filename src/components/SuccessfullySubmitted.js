@@ -3,9 +3,16 @@ import "./SuccessfullySubmitted.css";
 
 import {
     Modal, 
-    ModalHeader,
-    ModalBody
+    ModalBody,
+    Container, 
+    Row,
+    Col
 } from 'reactstrap'; 
+
+import {ReactComponent as Check} from '../check.svg'; 
+
+// Determines the amount of time that the modal is open upon trigger.
+const SUCCESS_CONFIRMATION_DURATION = 2500;
 
 const SuccessfullySubmitted = () => {
     
@@ -14,13 +21,25 @@ const SuccessfullySubmitted = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setOpen(false); 
-        }, 60000); 
+        }, SUCCESS_CONFIRMATION_DURATION); 
         return () => clearInterval(interval);
     });
     
     return(
         <Modal className="success-modal" isOpen={open} backdrop={false}>
-            <ModalHeader>Successfully Submitted!</ModalHeader>
+            <Container>
+                <Row className="align-items-center">
+                    <Col md="10">
+                        <ModalBody className="success-modal-content">
+                        Successfully Submitted!
+                        </ModalBody>
+                    </Col>
+                    <Col className="text-center" md="2">
+                        <Check className="my-1" fill="#FFF" width="48px" height="48px"/>
+                    </Col>
+                </Row>
+            
+            </Container>
         </Modal>
     ); 
 }

@@ -1,3 +1,11 @@
 .success-modal > .modal-content {
     background-color: #28a745;
 }
+
+.success-modal-content {
+    color: #FFF; 
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+}
