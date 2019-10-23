@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"; 
-import { Button, ButtonGroup, Form, Label, Input, } from 'reactstrap'; 
-import { anyTypeAnnotation } from "@babel/types";
+import { Button, ButtonGroup, Form, FormFeedback, Label, Input, } from 'reactstrap'; 
 
 const Pepsi = (props) => {
     const [pepsiSupplement, setPepsiSupplement] = useState({numberPepsi: null, numberDietPepsi: null, numberMountainDew: null}); 
@@ -17,7 +16,7 @@ const Pepsi = (props) => {
         }
     }, [shouldSave]); 
 
-    function checkInputValidity () {
+    function save () {
         setInvalidInputs(() => ({
             numberPepsi: (pepsiSupplement.numberDietPepsi === null || pepsiSupplement.numberDietPepsi < 0),
             numberDietPepsi: (pepsiSupplement.numberDietPepsi === null || pepsiSupplement.numberDietPepsi < 0), 
@@ -55,9 +54,11 @@ const Pepsi = (props) => {
 
             <hr /> 
 
+            <FormFeedback invalid>Please enter a non-negative number for Pepsi, Diet Pepsi, and Mountain Dew needs</FormFeedback>
+
             <ButtonGroup> 
                 <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
-                <Button color="primary" onClick={checkInputValidity}>Add</Button>
+                <Button color="primary" onClick={save}>Add</Button>
             </ButtonGroup>
         </Form>
 
