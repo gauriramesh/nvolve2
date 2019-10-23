@@ -4,7 +4,7 @@ import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } f
 import Sofs from "./Sofs";
 import TravelInsurance from "./TravelInsurance"; 
 
-const SupplementOptions = {
+export const SupplementOptions = {
     TRAVEL_INSURANCE: "Travel Insurance",
     SOFS: "SOFS"
 }; 
