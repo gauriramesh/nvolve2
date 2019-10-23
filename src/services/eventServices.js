@@ -4,7 +4,7 @@ export function addEvent(rsoName, event) {
     storedEvents.push(event);
     localStorage.setItem("events:" + rsoName, JSON.stringify(storedEvents));
   }
-  localStorage.setItem("events:" + JSON.stringify([event]));
+  localStorage.setItem("events:" + rsoName, JSON.stringify([event]));
 }
 
 export function getEvents(rsoName) {
@@ -29,6 +29,7 @@ export class Event {
     this.endTime = "";
     this.locations = [];
     this.supplements = [];
+    this.status = eventStatuses.Pending;
   }
 
   addLocation(location) {
@@ -47,6 +48,12 @@ export const eventRepeatOptions = {
   Monthly: 3,
   Annually: 4,
   Weekdays: 5
+};
+
+export const eventStatuses = {
+  Approved: "Approved",
+  Pending: "Pending",
+  Denied: "Denied"
 };
 
 export class OnCampusEventLocation {

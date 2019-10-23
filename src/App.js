@@ -16,7 +16,7 @@ function App() {
         <Route path="/organizations/:org" component={Organization} />
         <Route path="/epr/:org" component={Epr} />
         <Route exact path="/" component={Dashboard} />
-		<Route path="/reimbursement" component={Reimbursement} />
+		    <Route path="/reimbursement" component={Reimbursement} />
         <Route path="/" component={NotFound} />		
       </Switch>
     </Router>

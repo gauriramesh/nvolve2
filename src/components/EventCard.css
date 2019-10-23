@@ -1,0 +1,9 @@
+.event-card {
+    background-color: #f5f1e7;
+    box-shadow: 0px 5px 10px #55555555;
+    border-radius: 10px;
+  }
+
+#status-column {
+    align-content: right;
+}
