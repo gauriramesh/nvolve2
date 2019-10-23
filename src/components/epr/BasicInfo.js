@@ -60,6 +60,8 @@ export default class BasicInfo extends React.Component {
       if (!this.state[field]) {
         invalidCopy[field] = true;
         isFullyValid = false;
+      } else {
+        invalidCopy[field] = false;
       }
     }
     this.setState({
