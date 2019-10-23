@@ -9,6 +9,35 @@ const SupplementOptions = {
     SOFS: "SOFS"
 }; 
 
+export const SupplementTable = (props) => {
+    const SupplementList = () => {
+
+        return Object.keys(props.addedSupplements).map(element => {
+            return props.addedSupplements[element] ? (
+                <tr key={SupplementOptions[element]}>    
+                    <td>{SupplementOptions[element]}</td>
+                    <td><Button onClick={() => props.removeSupplement(element)}>Remove</Button></td>
+                </tr>
+            ) : null;
+        }); 
+    }
+
+    return (
+        <Table striped> 
+            <thead>
+                <tr> 
+                    <th>Supplement</th>
+                    <th>Actions</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <SupplementList />
+            </tbody>
+        </Table>
+    ); 
+
+}
+
 const Supplement = (props) => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
@@ -19,19 +48,6 @@ const Supplement = (props) => {
     function changeSelected(newSelected) { setDropdownSelected(() => newSelected); }; 
     function addSupplement(key, newSupplement) { setAddedSupplements(prev => ({...prev, [key]: newSupplement })); }
     function removeSupplement(supplementToDelete) { setAddedSupplements(prev => ({...prev, [supplementToDelete]: null})); }
-
-    export const SupplementList = () => {
-
-        return Object.keys(addedSupplements).map(element => {
-            return addedSupplements[element] ? (
-                <tr key={SupplementOptions[element]}>    
-                    <td>{SupplementOptions[element]}</td>
-                    <td><Button onClick={() => removeSupplement(element)}>Remove</Button></td>
-                </tr>
-            ) : null;
-        }); 
-
-    }
 
     return (
         <>
@@ -53,19 +69,7 @@ const Supplement = (props) => {
 
             <div className="container">
                
-                {dropdownSelected === "None" && 
-                    <Table striped> 
-                        <thead>
-                            <tr> 
-                                <th>Supplement</th>
-                                <th>Actions</th>
-                            </tr> 
-                        </thead>
-                        <tbody>
-                            <SupplementList />
-                        </tbody>
-                    </Table>
-                }
+                {dropdownSelected === "None" && <SupplementTable addedSupplements={addedSupplements} removeSupplement={removeSupplement} /> }
 
                 {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
