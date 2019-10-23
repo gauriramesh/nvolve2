@@ -8,10 +8,18 @@ import NotFound from "./pages/NotFound";
 import Reimbursement from "./pages/Reimbursement";
 import Epr from "./components/Epr";
 
-import { getNotifications } from "./services/notificationServices";
+import {
+  getNotifications,
+  removeNotification
+} from "./services/notificationServices";
 
 function App() {
   const [notifications, setNotifications] = useState(getNotifications());
+
+  const clearNotification = notification => {
+    removeNotification(notification);
+    setNotifications(notifications.filter(n => n !== notification));
+  };
 
   return (
     <Router>
@@ -26,7 +34,7 @@ function App() {
             <Dashboard
               {...props}
               notifications={notifications}
-              setNotifications={setNotifications}
+              clearNotification={clearNotification}
             />
           )}
         />
