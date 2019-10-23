@@ -20,7 +20,7 @@ const Supplement = (props) => {
     function addSupplement(key, newSupplement) { setAddedSupplements(prev => ({...prev, [key]: newSupplement })); }
     function removeSupplement(supplementToDelete) { setAddedSupplements(prev => ({...prev, [supplementToDelete]: null})); }
 
-    const SupplementList = () => {
+    export const SupplementList = () => {
 
         return Object.keys(addedSupplements).map(element => {
             return addedSupplements[element] ? (
