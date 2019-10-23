@@ -1,12 +1,14 @@
 import React from "react";
 import { Event } from "../services/eventServices";
+import BasicInfo from "./epr/BasicInfo";
 import LocationForm from "../components/LocationForm";
 import Supplement from '../pages/supplements/Supplement'; 
 
 const Forms = {
-  1: "Location", 
-  2: "Supplement", 
-  3: "Review"
+  1: "Basic Info",
+  2: "Location", 
+  3: "Supplement", 
+  4: "Review"
 }; 
 
 export default class Epr extends React.Component {
@@ -35,6 +37,16 @@ export default class Epr extends React.Component {
     this.setState({ locations });
   }
 
+  infoHandler = basicInfo => {
+    for (const info in basicInfo) {
+      if (basicInfo.hasOwnProperty(info) && this.state.hasOwnProperty(info)) {
+        this.setState({
+          [info]: basicInfo[info]
+        });
+      }
+    }
+  };
+
   setLocationAcknowledged(index, value) {
     const { locations } = this.state;
 
@@ -57,19 +69,24 @@ export default class Epr extends React.Component {
     return (
       <div>
         <h1>Hello {this.org}</h1>
-        
+
         {this.currentForm === 1 && 
+          <BasicInfo handler={this.infoHandler}></BasicInfo>
+        }
+
+        {this.currentForm === 2 && 
           <LocationForm
             setLocationAcknowledged={this.setLocationAcknowledged}
             locations={this.state.locations}
             addLocation={this.addLocation}
             removeLocation={this.removeLocation}
-          /> 
+          />
         }
 
-        {this.currentForm === 2 && 
+        {this.currentForm === 3 &&           
           <Supplement updateSupplements={this.updateSupplements} />
         }
+        
       </div>
     );
   }
