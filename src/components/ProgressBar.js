@@ -3,13 +3,12 @@ import "./ProgressBar.css";
 import { PageOptions } from "../services/eventServices";
 
 class ProgressBar extends React.Component {
-
   componentDidMount() {
     const currentPage = this.props.currentPage;
     const pageArr = Object.values(PageOptions);
-    for(let i = 0; i < pageArr.length; i++) {
+    for (let i = 0; i < pageArr.length; i++) {
       document.getElementById(pageArr[i]).classList.add("active");
-      if(pageArr[i] === currentPage) {
+      if (pageArr[i] === currentPage) {
         break;
       }
     }
@@ -18,15 +17,15 @@ class ProgressBar extends React.Component {
   render() {
     return (
       <div className="progressBarContainer">
-          <ul className="progressBar">
-              <li id={PageOptions.basicInfo}>Basic Info</li>
-              <li id={PageOptions.location}>Location</li>
-              <li id={PageOptions.supplements}>supplements</li>
-              <li id={PageOptions.review}>Review and Submit</li>
-          </ul>
+        <ul className="progressBar">
+          <li id={PageOptions.basicInfo}>Basic Info</li>
+          <li id={PageOptions.location}>Location</li>
+          <li id={PageOptions.supplements}>supplements</li>
+          <li id={PageOptions.review}>Review and Submit</li>
+        </ul>
       </div>
     );
   }
-};
+}
 
 export default ProgressBar;

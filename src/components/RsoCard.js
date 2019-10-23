@@ -86,15 +86,12 @@ class RsoCard extends React.Component {
                 </DropdownMenu>
               </Dropdown>
               {this.state.eprRedirect && (
-                <Redirect
-                  push
-                  to={`/organizations/${this.props.rsoIdentifier}/epr`}
-                />
+                <Redirect push to={`/epr/${this.props.rsoIdentifier}`} />
               )}
               {this.state.reimbursementRedirect && (
                 <Redirect
                   push
-                  to={`/organizations/${this.props.rsoIdentifier}/reimbursement`}
+                  to={`/reimbursement/${this.props.rsoIdentifier}`}
                 />
               )}
             </div>
