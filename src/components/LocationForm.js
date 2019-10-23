@@ -10,7 +10,8 @@ import {
   Label,
   FormGroup,
   Form,
-  Badge
+  Badge,
+  Button
 } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import {
@@ -26,7 +27,8 @@ export default class LocationForm extends React.Component {
     super(props);
 
     this.state = {
-      currentlySelected: { label: "", value: "" }
+      currentlySelected: { label: "", value: "" },
+      showError: false
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -44,12 +46,37 @@ export default class LocationForm extends React.Component {
     this.setState({ currentlySelected: value });
   }
 
+  validate = () => {
+    if (this.props.locations.length === 0) {
+      this.setState({ showError: true });
+      return;
+    } else {
+      this.setState({ showError: false });
+    }
+    for (let location in this.props.locations) {
+      if (
+        location.studentsOnlyRuleAcknowledged !== undefined &&
+        !location.studentsOnlyRuleAcknowledged
+      ) {
+        return;
+      }
+    }
+
+    this.props.goToNextPage();
+  };
+
   render() {
     return (
       <div>
         <ProgressBar currentPage={PageOptions.location}></ProgressBar>
         <Container>
-          <Row>
+          <Row
+            style={{
+              padding: "20px",
+              backgroundColor: "#f5f1e7",
+              borderRadius: "10px"
+            }}
+          >
             <Col sm={{ size: 10, offset: 1 }}>
               <CreatableSelect
                 isClearable
@@ -63,6 +90,22 @@ export default class LocationForm extends React.Component {
               {this.renderLocationList()}
             </Col>
           </Row>
+          <div style={{ margin: "10px" }}>
+            <Button
+              color="primary"
+              style={{ float: "left", margin: "10px" }}
+              onClick={this.props.goToPreviousPage}
+            >
+              &lt; Previous: Basic Info
+            </Button>
+            <Button
+              color="primary"
+              style={{ float: "right", margin: "10px" }}
+              onClick={this.validate}
+            >
+              Next: Supplements &gt;
+            </Button>
+          </div>
         </Container>
       </div>
     );
@@ -72,7 +115,16 @@ export default class LocationForm extends React.Component {
     const { locations } = this.props;
 
     if (locations.length === 0) {
-      return <h3 style={{ textAlign: "center" }}>No locations added.</h3>;
+      return (
+        <div>
+          <h3 style={{ textAlign: "center" }}>No locations added.</h3>
+          {this.state.showError && (
+            <h5 className="text-danger" style={{ textAlign: "center" }}>
+              You must add at least one location.
+            </h5>
+          )}
+        </div>
+      );
     }
 
     const jsx = [];

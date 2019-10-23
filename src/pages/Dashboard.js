@@ -8,11 +8,16 @@ import { getRsos, getRsoInfo } from "../services/rsoServices.js";
 // Notification Imports
 import NotificationCard from "../components/NotificationCard.js";
 
+import SuccessfullySubmitted from "../components/SuccessfullySubmitted.js";
+
 const Dashboard = props => {
   const rsos = getRsos().map(rso => getRsoInfo(rso));
 
   return (
     <Container>
+      {props.location && props.location.state && props.location.state.formSuccessfullySubmitted && (
+        <SuccessfullySubmitted />
+      )}
       <Row className="mt-5 mb-2">
         <Col md="12">
           <h1 className="display-2">Welcome to NVolve!</h1>
