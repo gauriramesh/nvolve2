@@ -20,7 +20,7 @@ import {
   OffCampusEventLocation,
   PageOptions
 } from "../services/eventServices";
-import ProgressBar from "./ProgressBar"
+import ProgressBar from "./ProgressBar";
 
 export default class LocationForm extends React.Component {
   constructor(props) {

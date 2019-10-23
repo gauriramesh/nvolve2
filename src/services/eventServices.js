@@ -113,8 +113,8 @@ export const PossibleEventLocations = [
 ];
 
 export const PageOptions = {
-    basicInfo : 'basicInfo', 
-    location : 'location', 
-    supplements: 'supplements', 
-    review : 'review'
+  basicInfo: "basicInfo",
+  location: "location",
+  supplements: "supplements",
+  review: "review"
 };
