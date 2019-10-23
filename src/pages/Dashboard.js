@@ -1,20 +1,60 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-const Dashboard = () => {
+// Membership Imports
+import RsoCard from "../components/RsoCard.js";
+import { getRsos, getRsoInfo } from "../services/rsoServices.js";
+
+// Notification Imports
+import NotificationCard from "../components/NotificationCard.js";
+
+const Dashboard = props => {
+  const rsos = getRsos().map(rso => getRsoInfo(rso));
+
   return (
     <Container>
-      <Row>
+      <Row className="mt-5 mb-2">
         <Col md="12">
-          <h1 className="display-3">Welcome to NVolve!</h1>
+          <h1 className="display-2">Welcome to NVolve!</h1>
         </Col>
       </Row>
       <Row>
-        <Col md="8">
+        <Col lg="8">
           <h6>MEMBERSHIPS</h6>
+          <div className="mt-3">
+            {rsos.map((rso, i) => {
+              return (
+                <div className="my-3">
+                  <RsoCard
+                    rsoName={rso.name}
+                    rsoIdentifier={rso.identifier}
+                    key={i}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </Col>
-        <Col md="4">
-          <h6>NOTIFICATIONS</h6>
+        <Col lg="4">
+          <h6>NOTIFICATIONS ({props.notifications.length})</h6>
+          <div className="mt-3">
+            {props.notifications.map(notification => {
+              return (
+                <div className="my-3">
+                  <NotificationCard
+                    title={notification.title}
+                    content={notification.content}
+                    rso={notification.rso}
+                    closeNotificationCallback={() =>
+                      props.setNotifications(
+                        props.notifications.filter(n => n !== notification)
+                      )
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
         </Col>
       </Row>
     </Container>
