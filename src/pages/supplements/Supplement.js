@@ -3,13 +3,17 @@ import "./Supplement.css";
 import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } from "reactstrap";
 import Sofs from "./Sofs";
 import TravelInsurance from "./TravelInsurance"; 
+import Pepsi from "./Pepsi"; 
 
 export const SupplementOptions = {
     TRAVEL_INSURANCE: "Travel Insurance",
-    SOFS: "SOFS"
+    SOFS: "SOFS", 
+    PEPSI: "Pepsi"
 }; 
 
 export const SupplementTable = (props) => {
+    console.log(props); 
+
     const SupplementList = () => {
 
         return Object.keys(props.addedSupplements).map(element => {
@@ -42,7 +46,7 @@ const Supplement = (props) => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
     const [dropdownSelected, setDropdownSelected] = useState("None"); 
-    const [addedSupplements, setAddedSupplements] = useState({"SOFS": null, "TRAVEL_INSURANCE": null}); 
+    const [addedSupplements, setAddedSupplements] = useState({"SOFS": null, "TRAVEL_INSURANCE": null, "PEPSI": null}); 
 
     function toggleDropdown() { setIsDropdownOpen(prev => !prev); }; 
     function changeSelected(newSelected) { setDropdownSelected(() => newSelected); }; 
@@ -63,6 +67,9 @@ const Supplement = (props) => {
                         <DropdownItem disabled={addedSupplements.SOFS !== null} onClick={() => changeSelected(SupplementOptions.SOFS)} >
                         {SupplementOptions.SOFS}
                         </DropdownItem>
+                        <DropdownItem disabled={addedSupplements.PEPSI !== null} onClick={() => changeSelected(SupplementOptions.PEPSI)} >
+                        {SupplementOptions.PEPSI}
+                        </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </div>
@@ -74,6 +81,8 @@ const Supplement = (props) => {
                 {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
                 {dropdownSelected === SupplementOptions.TRAVEL_INSURANCE && <TravelInsurance addSupplement={addSupplement} changeSelected={changeSelected} /> }
+
+                {dropdownSelected === SupplementOptions.PEPSI && <Pepsi addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
             </div>
 
