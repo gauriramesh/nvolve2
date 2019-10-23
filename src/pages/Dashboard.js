@@ -7,11 +7,9 @@ import { getRsos, getRsoInfo } from "../services/rsoServices.js";
 
 // Notification Imports
 import NotificationCard from "../components/NotificationCard.js";
-import { getNotifications } from "../services/notificationServices.js";
 
-const Dashboard = () => {
+const Dashboard = props => {
   const rsos = getRsos().map(rso => getRsoInfo(rso));
-  const notifications = getNotifications();
 
   return (
     <Container>
@@ -38,15 +36,20 @@ const Dashboard = () => {
           </div>
         </Col>
         <Col lg="4">
-          <h6>NOTIFICATIONS ({notifications.length})</h6>
+          <h6>NOTIFICATIONS ({props.notifications.length})</h6>
           <div className="mt-3">
-            {notifications.map((notification, i) => {
+            {props.notifications.map((notification, i) => {
               return (
                 <div className="my-3">
                   <NotificationCard
                     title={notification.title}
                     content={notification.content}
                     rso={notification.rso}
+                    closeNotificationCallback={() =>
+                      props.setNotifications(
+                        props.notifications.filter(n => n !== notification)
+                      )
+                    }
                   />
                 </div>
               );

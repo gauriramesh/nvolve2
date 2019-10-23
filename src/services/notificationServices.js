@@ -23,7 +23,7 @@ let notifications = [
 ];
 
 export function getNotifications() {
-  return [...notifications];
+  return notifications;
 }
 
 export function addNotification(notification) {
@@ -32,4 +32,8 @@ export function addNotification(notification) {
 
 export function clearNotifications() {
   notifications.clear();
+}
+
+export function removeNotification(notification) {
+  notifications = notifications.filter(n => n !== notification);
 }
