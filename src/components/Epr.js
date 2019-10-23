@@ -1,10 +1,7 @@
 import React from "react";
 import { Event } from "../services/eventServices";
-<<<<<<< HEAD
 import BasicInfo from "./epr/BasicInfo";
-=======
 import LocationForm from "../components/LocationForm";
->>>>>>> ef1b08f65914a9934622094403b4ab85ad0b67f1
 
 export default class Epr extends React.Component {
   constructor(props) {
@@ -12,13 +9,9 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-<<<<<<< HEAD
-=======
-
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
     this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
->>>>>>> ef1b08f65914a9934622094403b4ab85ad0b67f1
   }
 
   addLocation(location) {
@@ -27,15 +20,12 @@ export default class Epr extends React.Component {
     this.setState({ locations });
   }
 
-<<<<<<< HEAD
-=======
   removeLocation(index) {
     const { locations } = this.state;
     locations.splice(index, 1);
     this.setState({ locations });
   }
 
->>>>>>> ef1b08f65914a9934622094403b4ab85ad0b67f1
   addSupplement(supplement) {
     const { supplements } = this.state;
     supplements.push(supplement);
