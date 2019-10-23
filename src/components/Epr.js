@@ -67,9 +67,6 @@ export default class Epr extends React.Component {
   render() {
     return (
       <div>
-          {
-              console.log(this.state)
-          }
         <h1>Hello {this.org}</h1>
 
         {this.currentForm === 1 && (
