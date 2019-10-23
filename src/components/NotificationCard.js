@@ -1,9 +1,13 @@
 import React from "react";
 import "./NotificationCard.css";
+import {ReactComponent as Close} from "../close.svg"; 
 
 const NotificationCard = props => {
   return (
     <div className="notification-card py-3 px-3">
+      <div className="text-right close-button">
+        <button onClick={() => {console.log("Pew!")}}><Close width="24px" height="24px" /></button>
+      </div>
       <div className="mb-3">
         <span className="notification-title">{props.title}</span>
         <br className="notification-separator" />
