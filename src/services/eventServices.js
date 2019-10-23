@@ -23,7 +23,7 @@ export class Event {
     this.privateDescription = "";
     this.publicDescription = "";
     this.numParticipants = "";
-    this.repeatCycle = eventRepeatOptions.DoesNotRepeat;
+    this.repeatCycle = eventRepeatOptions.None;
     this.date = undefined;
     this.startTime = "";
     this.endTime = "";
@@ -41,7 +41,7 @@ export class Event {
 }
 
 export const eventRepeatOptions = {
-  DoesNotRepeat: 0,
+  None: 0,
   Daily: 1,
   Weekly: 2,
   Monthly: 3,

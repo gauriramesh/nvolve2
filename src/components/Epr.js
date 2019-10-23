@@ -1,5 +1,6 @@
 import React from "react";
 import { Event } from "../services/eventServices";
+import BasicInfo from "./epr/BasicInfo";
 import LocationForm from "../components/LocationForm";
 
 export default class Epr extends React.Component {
@@ -8,7 +9,6 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
     this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
@@ -32,6 +32,15 @@ export default class Epr extends React.Component {
     this.setState({ supplements });
   }
 
+  infoHandler = basicInfo => {
+    for (const info in basicInfo) {
+      if (basicInfo.hasOwnProperty(info) && this.state.hasOwnProperty(info)) {
+        this.setState({
+          [info]: basicInfo[info]
+        });
+      }
+    }
+  };
   setLocationAcknowledged(index, value) {
     const { locations } = this.state;
 
@@ -44,6 +53,7 @@ export default class Epr extends React.Component {
     return (
       <div>
         <h1>Hello {this.org}</h1>
+        <BasicInfo handler={this.infoHandler}></BasicInfo>
         <LocationForm
           setLocationAcknowledged={this.setLocationAcknowledged}
           locations={this.state.locations}
