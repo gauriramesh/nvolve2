@@ -12,8 +12,6 @@ export const SupplementOptions = {
 }; 
 
 export const SupplementTable = (props) => {
-    console.log(props); 
-
     const SupplementList = () => {
 
         return Object.keys(props.addedSupplements).map(element => {
