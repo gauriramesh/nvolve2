@@ -18,7 +18,7 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.currentForm = 1; 
+    this.currentForm = 4; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
@@ -69,6 +69,9 @@ export default class Epr extends React.Component {
   render() {
     return (
       <div>
+          {
+              console.log(this.state)
+          }
         <h1>Hello {this.org}</h1>
 
         {this.currentForm === 1 && 
@@ -88,8 +91,9 @@ export default class Epr extends React.Component {
         }
         {
             this.currentForm === 4 && 
-            <Review></Review>
+            <Review info={this.state} org={this.org}></Review>
         }
+        
       </div>
     );
   }
