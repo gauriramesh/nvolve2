@@ -1,9 +1,9 @@
 .container {
-    margin-top: 5pt;
+  margin-top: 5pt;
 }
 
 .bottom-right {
-    position: absolute; 
-    bottom: 20pt; 
-    right: 20pt; 
+  position: absolute;
+  bottom: 20pt;
+  right: 20pt;
 }

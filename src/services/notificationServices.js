@@ -6,7 +6,9 @@ export class Notification {
   }
 }
 
-let notifications = [
+const NOTIFICATION_KEY = "notifications";
+
+const DEFAULT_NOTIFICATIONS = [
   new Notification(
     "Event Denied",
     "The event 'Trip to the Dairy Store' was denied. " +
@@ -23,17 +25,33 @@ let notifications = [
 ];
 
 export function getNotifications() {
-  return notifications;
+  const json = localStorage.getItem(NOTIFICATION_KEY);
+
+  if (!json) {
+    localStorage.setItem(
+      NOTIFICATION_KEY,
+      JSON.stringify(DEFAULT_NOTIFICATIONS)
+    );
+  }
+
+  return JSON.parse(localStorage.getItem(NOTIFICATION_KEY));
 }
 
 export function addNotification(notification) {
+  const notifications = JSON.parse(localStorage.getItem(NOTIFICATION_KEY));
   notifications.push(notification);
-}
-
-export function clearNotifications() {
-  notifications.clear();
+  localStorage.setItem(NOTIFICATION_KEY, JSON.stringify(notifications));
 }
 
 export function removeNotification(notification) {
-  notifications = notifications.filter(n => n !== notification);
+  let notifications = JSON.parse(localStorage.getItem(NOTIFICATION_KEY));
+  notifications = notifications.filter(
+    n =>
+      !(
+        n.title === notification.title &&
+        n.content === notification.content &&
+        n.rso === notification.rso
+      )
+  );
+  localStorage.setItem(NOTIFICATION_KEY, JSON.stringify(notifications));
 }

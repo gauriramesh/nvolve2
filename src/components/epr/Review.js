@@ -78,7 +78,7 @@ export default class Review extends React.Component {
         </Container>
         <Button onClick={this.submit} color="primary" className="Button">Submit</Button>
         {
-          this.state.redirectOnSubmit && <Redirect to={{pathname : "/", state : {formsuccessfullysubmitted : true}}}/>
+          this.state.redirectOnSubmit && <Redirect to={{pathname : "/", state : {formSuccessfullySubmitted : true}}}/>
         }
       </div>
     );
