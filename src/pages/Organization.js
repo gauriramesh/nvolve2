@@ -4,6 +4,8 @@ import "./Organization.css";
 
 import { getEvents, Event, addEvent, PossibleEventLocations } from "../services/eventServices.js";
 
+import { Redirect, Link } from "react-router-dom";
+
 import EventCard from "../components/EventCard.js";
 
 const NebraskansForCheese = () => {
@@ -34,10 +36,17 @@ const NebraskansForCheese = () => {
             })}
           </div>
         </Col>
-        <Col>
+        <Col sm="3" >
+            <h5>Actions</h5>
             <Link
-              to={}>
+              to={"/organizations/nebraskansforcheese/reimbursement"}>
               File a Reimbursement
+            </Link>
+            <Link
+              to={"/organizations/nebraskansforcheese/epr"}>
+              <Container className="action-div">
+                <span className="goto-link-text">Plan an Event</span>
+              </Container>
             </Link>
         </Col>
       </Row>

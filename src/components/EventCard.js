@@ -3,8 +3,6 @@ import "./EventCard.css";
 
 import { Container, Row, Col } from "reactstrap";
 
-import { Redirect, Link } from "react-router-dom";
-
 import { ReactComponent as Cal } from "../cal.svg";
 import { ReactComponent as Loc } from "../location.svg";
 
