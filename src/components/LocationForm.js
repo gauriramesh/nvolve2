@@ -54,42 +54,60 @@ export default class LocationForm extends React.Component {
       this.setState({ showError: false });
     }
     for (let location in this.props.locations) {
-      if (location.studentsOnlyRuleAcknowledged !== undefined && !location.studentsOnlyRuleAcknowledged) {
+      if (
+        location.studentsOnlyRuleAcknowledged !== undefined &&
+        !location.studentsOnlyRuleAcknowledged
+      ) {
         return;
       }
     }
 
     this.props.goToNextPage();
-  }
+  };
 
   render() {
     return (
-        <div>
-            <ProgressBar currentPage={PageOptions.location}></ProgressBar>
-            <Container>
-                <Row style={{ padding: '20px', backgroundColor: '#f5f1e7', borderRadius: '10px' }}>
-                <Col sm={{ size: 10, offset: 1 }}>
-                    <CreatableSelect
-                    isClearable
-                    options={PossibleEventLocations}
-                    placeholder="Search for a room"
-                    value={this.state.currentlySelected}
-                    onChange={this.onSelect}
-                    formatCreateLabel={s => <label>Add "{s}"</label>}
-                    />
+      <div>
+        <ProgressBar currentPage={PageOptions.location}></ProgressBar>
+        <Container>
+          <Row
+            style={{
+              padding: "20px",
+              backgroundColor: "#f5f1e7",
+              borderRadius: "10px"
+            }}
+          >
+            <Col sm={{ size: 10, offset: 1 }}>
+              <CreatableSelect
+                isClearable
+                options={PossibleEventLocations}
+                placeholder="Search for a room"
+                value={this.state.currentlySelected}
+                onChange={this.onSelect}
+                formatCreateLabel={s => <label>Add "{s}"</label>}
+              />
 
-                    {this.renderLocationList()}
-                </Col>
-                </Row>
-                <div style={{ margin: '10px' }}>
-                <Button color="primary" style={{ float: 'left', margin: '10px'}} onClick={this.props.goToPreviousPage}>
+              {this.renderLocationList()}
+            </Col>
+          </Row>
+          <div style={{ margin: "10px" }}>
+            <Button
+              color="primary"
+              style={{ float: "left", margin: "10px" }}
+              onClick={this.props.goToPreviousPage}
+            >
               &lt; Previous: Basic Info
             </Button>
-            <Button color="primary" style={{ float: 'right', margin: '10px'}} onClick={this.validate}>Next: Supplements &gt;</Button>
-                </div>
-                
-            </Container>
-        </div>
+            <Button
+              color="primary"
+              style={{ float: "right", margin: "10px" }}
+              onClick={this.validate}
+            >
+              Next: Supplements &gt;
+            </Button>
+          </div>
+        </Container>
+      </div>
     );
   }
 
@@ -101,7 +119,9 @@ export default class LocationForm extends React.Component {
         <div>
           <h3 style={{ textAlign: "center" }}>No locations added.</h3>
           {this.state.showError && (
-            <h5 className="text-danger" style={{textAlign: 'center'}}>You must add at least one location.</h5>
+            <h5 className="text-danger" style={{ textAlign: "center" }}>
+              You must add at least one location.
+            </h5>
           )}
         </div>
       );
