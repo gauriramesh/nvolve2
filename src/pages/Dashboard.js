@@ -38,7 +38,7 @@ const Dashboard = props => {
         <Col lg="4">
           <h6>NOTIFICATIONS ({props.notifications.length})</h6>
           <div className="mt-3">
-            {props.notifications.map((notification, i) => {
+            {props.notifications.map(notification => {
               return (
                 <div className="my-3">
                   <NotificationCard
