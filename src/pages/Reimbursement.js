@@ -11,6 +11,8 @@ import {
 } from "reactstrap";
 import "./Reimbursement.css";
 
+import { Redirect } from "react-router-dom";
+
 export default class ReimbursementForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,13 +23,14 @@ export default class ReimbursementForm extends React.Component {
       amount: "",
       file: "",
       mail: true,
-      sofs: "off",
+      sofs: false,
       eventValid: true,
       descriptionValid: true,
       payToValid: true,
       amountValid: true,
       fileValid: true,
-      deliveryFormatValid: true
+      deliveryFormatValid: true,
+      shouldRedirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +38,7 @@ export default class ReimbursementForm extends React.Component {
 
   handleChange(event) {
     let field = "";
+    let value = event.target.value;
     switch (event.target.id) {
       case "eventSelect":
         field = "event";
@@ -53,11 +57,13 @@ export default class ReimbursementForm extends React.Component {
         break;
       case "mail":
         field = "mail";
-        this.setState({ sofs: "off" });
+        value = true;
+        this.setState({ sofs: false });
         break;
       case "sofs":
         field = "sofs";
-        this.setState({ mail: "off" });
+        value = true;
+        this.setState({ mail: false });
         break;
       default:
         break;
@@ -66,12 +72,13 @@ export default class ReimbursementForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.validateInput();
-    console.log(this.state);
+    if(this.validateInput()) {
+      this.setState({shouldRedirect: true});
+    }    
   }
 
   isNotEmpty(val) {
-    return val != null && val != undefined && val != "";
+    return val !== null && val !== undefined && val !== "";
   }
 
   isValidFileFormat(fp) {
@@ -85,36 +92,27 @@ export default class ReimbursementForm extends React.Component {
 
   isValidAmount(val) {
     return (
-      (!isNaN(val) || (val.charAt(0) == "$" && !isNaN(val.substring(1)))) &&
+      (!isNaN(val) || (val.charAt(0) === "$" && !isNaN(val.substring(1)))) &&
       (val.indexOf(".") < 0 || val.substring(val.indexOf(".")).length <= 3)
     );
   }
 
   validateInput() {
-    this.setState({ eventValid: this.isNotEmpty(this.state.event) });
-    this.setState({
-      descriptionValid: this.isNotEmpty(this.state.description)
-    });
-    this.setState({ payToValid: this.isNotEmpty(this.state.payTo) });
-    this.setState({
-      amountValid:
-        this.isNotEmpty(this.state.amount) &&
-        this.isValidAmount(this.state.amount)
-    });
-    this.setState({
-      fileValid:
-        this.isNotEmpty(this.state.file) &&
-        this.isValidFileFormat(this.state.file)
-    });
-    this.setState({
-      deliveryFormatValid:
-        (this.state.mail === "on" && this.state.sofs === "off") ||
-        (this.state.mail === "off" && this.state.sofs === "on")
-    });
-    console.log(
-      (this.state.mail === "on" && this.state.sofs === "off") ||
-        (this.state.mail === "off" && this.state.sofs === "on")
-    );
+    let eventCheck = this.isNotEmpty(this.state.event);
+    let descriptionCheck =  this.isNotEmpty(this.state.description);
+    let payToCheck = this.isNotEmpty(this.state.payTo);
+    let amountCheck = this.isNotEmpty(this.state.amount) && this.isValidAmount(this.state.amount);
+    let fileCheck = this.isNotEmpty(this.state.file) && this.isValidFileFormat(this.state.file);
+    let deliveryFormatCheck = (this.state.mail && !this.state.sofs) || (!this.state.mail && this.state.sofs);
+
+    this.setState({ eventValid: eventCheck });
+    this.setState({ descriptionValid: descriptionCheck });
+    this.setState({ payToValid: payToCheck });
+    this.setState({ amountValid: amountCheck });
+    this.setState({ fileValid: fileCheck });
+    this.setState({ deliveryFormatValid: deliveryFormatCheck });
+
+    return eventCheck && descriptionCheck && payToCheck && amountCheck && fileCheck && deliveryFormatCheck;
   }
 
   render() {
@@ -237,6 +235,15 @@ export default class ReimbursementForm extends React.Component {
           >
             Submit
           </Button>
+          {this.state.shouldRedirect && (
+                <Redirect
+                  push
+                  to={{
+                    pathname: "/",
+                    state: { formSuccessfullySubmitted: true }
+                  }}
+                />
+            )}
         </Form>
       </Container>
     );
