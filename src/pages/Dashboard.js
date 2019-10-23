@@ -24,12 +24,8 @@ const Dashboard = props => {
           <div className="mt-3">
             {rsos.map((rso, i) => {
               return (
-                <div className="my-3">
-                  <RsoCard
-                    rsoName={rso.name}
-                    rsoIdentifier={rso.identifier}
-                    key={i}
-                  />
+                <div key={i} className="my-3">
+                  <RsoCard rsoName={rso.name} rsoIdentifier={rso.identifier} />
                 </div>
               );
             })}
@@ -38,17 +34,15 @@ const Dashboard = props => {
         <Col lg="4">
           <h6>NOTIFICATIONS ({props.notifications.length})</h6>
           <div className="mt-3">
-            {props.notifications.map(notification => {
+            {props.notifications.map((notification, i) => {
               return (
-                <div className="my-3">
+                <div key={i} className="my-3">
                   <NotificationCard
                     title={notification.title}
                     content={notification.content}
                     rso={notification.rso}
                     closeNotificationCallback={() =>
-                      props.setNotifications(
-                        props.notifications.filter(n => n !== notification)
-                      )
+                      props.clearNotification(notification)
                     }
                   />
                 </div>
