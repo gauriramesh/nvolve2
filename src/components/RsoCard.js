@@ -65,7 +65,7 @@ class RsoCard extends React.Component {
                 <DropdownToggle
                   outline
                   color="secondary"
-                  className="w-100 text-left"
+                  className="w-100 text-left dropdown-color"
                   caret
                 >
                   I would like to...
@@ -86,15 +86,12 @@ class RsoCard extends React.Component {
                 </DropdownMenu>
               </Dropdown>
               {this.state.eprRedirect && (
-                <Redirect
-                  push
-                  to={`/organizations/${this.props.rsoIdentifier}/epr`}
-                />
+                <Redirect push to={`/epr/${this.props.rsoIdentifier}`} />
               )}
               {this.state.reimbursementRedirect && (
                 <Redirect
                   push
-                  to={`/organizations/${this.props.rsoIdentifier}/reimbursement`}
+                  to={`/reimbursement/${this.props.rsoIdentifier}`}
                 />
               )}
             </div>
@@ -109,7 +106,7 @@ class RsoCard extends React.Component {
                   className="goto-icon"
                   width="64px"
                   height="64px"
-                  fill="#6c757d"
+                  fill="#000"
                 />
                 <span className="goto-link-text">Go to Organization</span>
               </Link>

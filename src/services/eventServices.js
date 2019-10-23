@@ -119,3 +119,10 @@ export const PossibleEventLocations = [
   { label: "Kauffman 127B", value: "Kauffman 127B" },
   { label: "Kauffman 137", value: "Kauffman 137" }
 ];
+
+export const PageOptions = {
+  basicInfo: "basicInfo",
+  location: "location",
+  supplements: "supplements",
+  review: "review"
+};

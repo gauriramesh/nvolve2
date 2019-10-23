@@ -10,6 +10,21 @@
   font-size: 3em;
 }
 
+.dropdown-color {
+  color: black !important;
+  border-color: black !important;
+}
+
+.dropdown-color:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+.show > .dropdown-color {
+  background-color: black !important;
+  color: white !important;
+}
+
 .dropdown-item:active {
   background-color: #d00000 !important;
 }
@@ -32,7 +47,7 @@
 }
 
 .goto-link-text {
-  color: #6c757d;
+  color: #000;
   text-align: center;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.1em;

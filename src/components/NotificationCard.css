@@ -1,3 +1,16 @@
+.close-button {
+  margin-bottom: -36px;
+}
+
+.close-button > button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
 .notification-card {
   background-color: #c7c8ca;
   box-shadow: 0px 5px 10px #55555555;
