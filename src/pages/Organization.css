@@ -1,14 +1,28 @@
 .action-div {
     background-color: #f5f1e7;
-    box-shadow: 0px 5px 10px #55555555;
+    box-shadow: 0px 5px 5px #55555555;
     border-radius: 10px;
-    height: 60px;
+    height: 70px;
+    margin-bottom: 15px;
 }
 
 .goto-link-text {
-    color: #6c757d;
     text-align: center;
     font-family: "Source Sans Pro", sans-serif;
     font-size: 1.1em;
     text-decoration: none;
+  }
+  
+  .goto-icon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .goto-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }

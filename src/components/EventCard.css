@@ -7,3 +7,30 @@
 #status-column {
     align-content: right;
 }
+
+.Pending {
+    width: 20px;
+    height: 20px;
+    background-color: #ffd74f;
+    border-radius: 25px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.Approved {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 25px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.Denied {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 25px;
+    display: inline-block;
+    margin-right: 5px;
+}

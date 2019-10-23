@@ -3,6 +3,7 @@ export function addEvent(rsoName, event) {
   if (storedEvents) {
     storedEvents.push(event);
     localStorage.setItem("events:" + rsoName, JSON.stringify(storedEvents));
+    return;
   }
   localStorage.setItem("events:" + rsoName, JSON.stringify([event]));
 }

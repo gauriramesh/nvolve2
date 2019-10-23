@@ -9,25 +9,9 @@ import { ReactComponent as Loc } from "../location.svg";
 class EventCard extends React.Component {
     constructor(props) {
         super(props);
-
-        this.redirectToEpr.bind(this);
-        this.redirectToReimbursement.bind(this);
-    }
-
-    redirectToEpr() {
-        this.setState(prevState => ({
-            eprRedirect: true
-        }));
-    }
-    
-    redirectToReimbursement() {
-        this.setState(prevState => ({
-            reimbursementRedirect: true
-        }));
     }
 
     getNiceDate() {
-        console.log(this.props.eventDate)
         return this.props.eventDate.substring(5, 7) + "/" + this.props.eventDate.substring(8, 10) + "/" + this.props.eventDate.substring(0, 4);
     }
 
@@ -42,7 +26,7 @@ class EventCard extends React.Component {
                             height="30px"
                             style={{display: 'inline-block'}}
                         />
-                        <h4 style={{display: 'inline-block'}}>{this.props.eventLocation}</h4>
+                        <h6 style={{display: 'inline-block'}}>{this.props.eventLocation}</h6>
                         <br />
                         <br />
                         <Cal 
@@ -50,10 +34,11 @@ class EventCard extends React.Component {
                             height="30px"
                             style={{display: 'inline-block'}}
                         />
-                        <h4 style={{display: 'inline-block'}}>{this.getNiceDate()}</h4>
+                        <h6 style={{display: 'inline-block'}}>{this.getNiceDate()}</h6>
                     </Col>
                     <Col md="3" className="text-right">
-                        <h4>{this.props.eventStatus}</h4>
+                        <div className={this.props.eventStatus}></div>
+                        <h6 style={{display: "inline-block", "marginRight": "10px"}}>{this.props.eventStatus}</h6>
                     </Col>
                 </Row>
             </Container>
