@@ -10,7 +10,7 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.currentForm = 1;
+    this.state.currentForm = 1; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
@@ -20,8 +20,8 @@ export default class Epr extends React.Component {
   }
 
   nextForm(){
-    console.log(this.currentForm); 
-    this.currentForm++; 
+    const {currentForm} = this.state; 
+    this.setState({currentForm: currentForm+1}); 
   }
 
   addLocation(location) {
@@ -68,11 +68,11 @@ export default class Epr extends React.Component {
       <div>
         <h1>Hello {this.org}</h1>
 
-        {this.currentForm === 1 && (
+        {this.state.currentForm === 1 && (
           <BasicInfo handler={this.infoHandler} nextForm={this.nextForm}></BasicInfo>
         )}
 
-        {this.currentForm === 2 && (
+        {this.state.currentForm === 2 && (
           <LocationForm
             setLocationAcknowledged={this.setLocationAcknowledged}
             locations={this.state.locations}
@@ -82,7 +82,7 @@ export default class Epr extends React.Component {
           />
         )}
 
-        {this.currentForm === 3 && (
+        {this.state.currentForm === 3 && (
           <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm}/>
         )}
       </div>

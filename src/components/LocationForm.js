@@ -62,7 +62,7 @@ export default class LocationForm extends React.Component {
       }
     }
 
-    this.props.goToNextPage();
+    this.props.nextForm();
   };
 
   render() {
@@ -90,7 +90,7 @@ export default class LocationForm extends React.Component {
                 </Col>
                 </Row>
             </Container>
-            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.props.nextForm}> Submit and Continue to Supplements </Button> 
+            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.validate}> Submit and Continue to Supplements </Button> 
         </div>
     );
   }
