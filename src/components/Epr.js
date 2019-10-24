@@ -69,7 +69,7 @@ export default class Epr extends React.Component {
         <h1>Hello {this.org}</h1>
 
         {this.currentForm === 1 && (
-          <BasicInfo handler={this.infoHandler}></BasicInfo>
+          <BasicInfo handler={this.infoHandler} nextForm={this.nextForm}></BasicInfo>
         )}
 
         {this.currentForm === 2 && (
