@@ -4,25 +4,24 @@ import BasicInfo from "./epr/BasicInfo";
 import LocationForm from "../components/LocationForm";
 import Supplement from '../pages/supplements/Supplement'; 
 
-const Forms = {
-  1: "Basic Info",
-  2: "Location", 
-  3: "Supplement", 
-  4: "Review"
-}; 
-
 export default class Epr extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.currentForm = 3; 
+    this.currentForm = 1; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
     this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
     this.updateSupplements = this.updateSupplements.bind(this); 
+    this.nextForm = this.nextForm.bind(this); 
+  }
+
+  nextForm(){
+      const {currentForm} = this.state; 
+      this.setState({currentForm: currentForm + 1}); 
   }
 
   addLocation(location) {
@@ -71,7 +70,7 @@ export default class Epr extends React.Component {
         <h1>Hello {this.org}</h1>
 
         {this.currentForm === 1 && 
-          <BasicInfo handler={this.infoHandler}></BasicInfo>
+          <BasicInfo handler={this.infoHandler} nextForm={this.nextForm} ></BasicInfo>
         }
 
         {this.currentForm === 2 && 
