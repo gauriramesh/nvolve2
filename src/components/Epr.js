@@ -20,8 +20,8 @@ export default class Epr extends React.Component {
   }
 
   nextForm(){
-      const {currentForm} = this.state; 
-      this.setState({currentForm: currentForm + 1}); 
+    console.log(this.currentForm); 
+    this.currentForm++; 
   }
 
   addLocation(location) {
@@ -52,6 +52,7 @@ export default class Epr extends React.Component {
     locations[index].studentsOnlyRuleAcknowledged = value;
 
     this.setState({ locations });
+
   }
 
   
@@ -79,11 +80,12 @@ export default class Epr extends React.Component {
             locations={this.state.locations}
             addLocation={this.addLocation}
             removeLocation={this.removeLocation}
+            nextForm={this.nextForm}
           />
         }
 
         {this.currentForm === 3 &&           
-          <Supplement updateSupplements={this.updateSupplements} />
+          <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm} />
         }
         
       </div>

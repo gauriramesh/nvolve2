@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Container,
+  Button,
   Row,
   Col,
   Card,
@@ -64,6 +65,7 @@ export default class LocationForm extends React.Component {
                 </Col>
                 </Row>
             </Container>
+            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.props.nextForm}> Submit and Continue to Supplements </Button> 
         </div>
     );
   }

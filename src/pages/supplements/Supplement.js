@@ -85,7 +85,7 @@ const Supplement = (props) => {
             </div>
 
             <div className="bottom-right">
-                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => props.updateSupplements(addedSupplements)}> Submit and Continue to Review </Button> 
+                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => { props.updateSupplements(addedSupplements); props.nextForm(); }}> Submit and Continue to Review </Button> 
             </div>
         </>
     );
