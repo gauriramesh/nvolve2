@@ -88,6 +88,8 @@ export default class BasicInfo extends React.Component {
           this.props.handler(this.state);
         }
       );
+
+      this.props.nextForm(); 
     }
   };
 
