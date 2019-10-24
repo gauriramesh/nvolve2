@@ -5,25 +5,24 @@ import LocationForm from "../components/LocationForm";
 import Supplement from '../pages/supplements/Supplement'; 
 import Review from './epr/Review';
 
-const Forms = {
-  1: "Basic Info",
-  2: "Location",
-  3: "Supplement",
-  4: "Review"
-};
-
 export default class Epr extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.currentForm = 4; 
+    this.state.currentForm = 1; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
     this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
-    this.updateSupplements = this.updateSupplements.bind(this);
+    this.updateSupplements = this.updateSupplements.bind(this); 
+    this.nextForm = this.nextForm.bind(this); 
+  }
+
+  nextForm(){
+    const {currentForm} = this.state; 
+    this.setState({currentForm: currentForm+1}); 
   }
 
   addLocation(location) {
@@ -54,6 +53,7 @@ export default class Epr extends React.Component {
     locations[index].studentsOnlyRuleAcknowledged = value;
 
     this.setState({ locations });
+
   }
 
   updateSupplements(supplements) {
@@ -69,20 +69,22 @@ export default class Epr extends React.Component {
       <div>
         <h1>Hello {this.org}</h1>
 
-        {this.currentForm === 1 && (
-          <BasicInfo handler={this.infoHandler}></BasicInfo>
+        {this.state.currentForm === 1 && (
+          <BasicInfo handler={this.infoHandler} nextForm={this.nextForm}></BasicInfo>
         )}
-        {this.currentForm === 2 && (
+
+        {this.state.currentForm === 2 && (
           <LocationForm
             setLocationAcknowledged={this.setLocationAcknowledged}
             locations={this.state.locations}
             addLocation={this.addLocation}
             removeLocation={this.removeLocation}
+            nextForm={this.nextForm}
           />
         )}
 
-        {this.currentForm === 3 && (
-          <Supplement updateSupplements={this.updateSupplements} />
+        {this.state.currentForm === 3 && (
+          <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm}/>
         )}
         {
             this.currentForm === 4 && 
