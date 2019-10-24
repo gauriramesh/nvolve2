@@ -44,7 +44,7 @@ const Pepsi = (props) => {
                 }
             />
 
-            <Label for="numberMountainDew">How many boxes of Pepsi will you need?</Label>
+            <Label for="numberMountainDew">How many boxes of Mountain Dew will you need?</Label>
             <Input type="number" id="numberMountainDew" invalid={invalidInputs.numberMountainDew } onChange={event => 
                 {
                     event.persist(); 
