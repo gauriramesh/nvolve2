@@ -33,7 +33,7 @@ const TravelInsurance = (props) => {
                 setTravelInsuranceSupplement(prev => ({...prev, driver: event.target.value}))}
             }/>
 
-            <hr />
+      <hr />
 
             <Label for="passengers">Passenger Names</Label>
             <Input type="textarea" id="passengers" invalid={invalidInputs.passengers} onChange={event => 
@@ -52,7 +52,33 @@ const TravelInsurance = (props) => {
             </ButtonGroup>
         </Form>
 
-    ); 
+      <ButtonGroup>
+        <Button
+          color="secondary"
+          onClick={() => {
+            props.changeSelected("None");
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          color="primary"
+          onClick={() => {
+            props.addSupplement("TRAVEL_INSURANCE", travelInsuranceSupplement);
+            props.changeSelected("None");
+          }}
+          disabled={
+            !(
+              travelInsuranceSupplement.driver &&
+              travelInsuranceSupplement.passengers
+            )
+          }
+        >
+          Add
+        </Button>
+      </ButtonGroup>
+    </Form>
+  );
 };
 
-export default TravelInsurance; 
+export default TravelInsurance;

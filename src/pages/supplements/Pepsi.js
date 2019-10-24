@@ -52,8 +52,9 @@ const Pepsi = (props) => {
                 }
             />
 
-            <hr /> 
+      <hr />
 
+<<<<<<< HEAD
             <FormFeedback invalid>Please enter a non-negative number for Pepsi, Diet Pepsi, and Mountain Dew needs</FormFeedback>
 
             <ButtonGroup> 
@@ -63,6 +64,36 @@ const Pepsi = (props) => {
         </Form>
 
     ); 
+=======
+      <ButtonGroup>
+        <Button
+          color="secondary"
+          onClick={() => {
+            props.changeSelected("None");
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          color="primary"
+          onClick={() => {
+            props.addSupplement("PEPSI", pepsiSupplement);
+            props.changeSelected("None");
+          }}
+          disabled={
+            !(
+              pepsiSupplement.numberPepsi ||
+              pepsiSupplement.numberDietPepsi ||
+              pepsiSupplement.numberMountainDew
+            )
+          }
+        >
+          Add
+        </Button>
+      </ButtonGroup>
+    </Form>
+  );
+>>>>>>> 72848ac6e2cd3e65dfbeb35fa44330a6224f9e46
 };
 
-export default Pepsi; 
+export default Pepsi;

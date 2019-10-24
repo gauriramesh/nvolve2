@@ -11,7 +11,8 @@ import {
   Label,
   FormGroup,
   Form,
-  Badge
+  Badge,
+  Button
 } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import {
@@ -20,14 +21,15 @@ import {
   OffCampusEventLocation,
   PageOptions
 } from "../services/eventServices";
-import ProgressBar from "./ProgressBar"
+import ProgressBar from "./ProgressBar";
 
 export default class LocationForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentlySelected: { label: "", value: "" }
+      currentlySelected: { label: "", value: "" },
+      showError: false
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -45,22 +47,46 @@ export default class LocationForm extends React.Component {
     this.setState({ currentlySelected: value });
   }
 
+  validate = () => {
+    if (this.props.locations.length === 0) {
+      this.setState({ showError: true });
+      return;
+    } else {
+      this.setState({ showError: false });
+    }
+    for (let location in this.props.locations) {
+      if (
+        location.studentsOnlyRuleAcknowledged !== undefined &&
+        !location.studentsOnlyRuleAcknowledged
+      ) {
+        return;
+      }
+    }
+
+    this.props.goToNextPage();
+  };
+
   render() {
     return (
-        <div>
-            <ProgressBar currentPage={PageOptions.location}></ProgressBar>
-            <Container>
-                <Row>
-                <Col sm={{ size: 10, offset: 1 }}>
-                    <CreatableSelect
-                    isClearable
-                    options={PossibleEventLocations}
-                    placeholder="Search for a room"
-                    value={this.state.currentlySelected}
-                    onChange={this.onSelect}
-                    formatCreateLabel={s => <label>Add "{s}"</label>}
-                    />
-
+      <div>
+        <ProgressBar currentPage={PageOptions.location}></ProgressBar>
+        <Container>
+          <Row
+            style={{
+              padding: "20px",
+              backgroundColor: "#f5f1e7",
+              borderRadius: "10px"
+            }}
+          >
+            <Col sm={{ size: 10, offset: 1 }}>
+              <CreatableSelect
+                isClearable
+                options={PossibleEventLocations}
+                placeholder="Search for a room"
+                value={this.state.currentlySelected}
+                onChange={this.onSelect}
+                formatCreateLabel={s => <label>Add "{s}"</label>}
+              />
                     {this.renderLocationList()}
                 </Col>
                 </Row>
@@ -74,7 +100,16 @@ export default class LocationForm extends React.Component {
     const { locations } = this.props;
 
     if (locations.length === 0) {
-      return <h3 style={{ textAlign: "center" }}>No locations added.</h3>;
+      return (
+        <div>
+          <h3 style={{ textAlign: "center" }}>No locations added.</h3>
+          {this.state.showError && (
+            <h5 className="text-danger" style={{ textAlign: "center" }}>
+              You must add at least one location.
+            </h5>
+          )}
+        </div>
+      );
     }
 
     const jsx = [];

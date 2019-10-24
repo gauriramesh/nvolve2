@@ -1,9 +1,16 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import "./Supplement.css";
-import { Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Table } from "reactstrap";
+import {
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Table
+} from "reactstrap";
 import Sofs from "./Sofs";
-import TravelInsurance from "./TravelInsurance"; 
-import Pepsi from "./Pepsi"; 
+import TravelInsurance from "./TravelInsurance";
+import Pepsi from "./Pepsi";
 
 export const SupplementOptions = {
     TRAVEL_INSURANCE: "Travel Insurance",

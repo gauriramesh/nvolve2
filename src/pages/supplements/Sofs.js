@@ -33,7 +33,7 @@ const Sofs = (props) => {
                 setSofsSupplement(prev => ({...prev, budgetDescription: event.target.value})) }
             }/>
 
-            <hr />
+      <hr />
 
             <Label for="budgetUpload">Please upload your budget</Label>
             <Input type="file" id="budgetUpload" invalid={invalidInputs.budgetFile} onChange={event => 
@@ -42,7 +42,7 @@ const Sofs = (props) => {
                     setSofsSupplement(prev => ({...prev, budgetFile: event.target.value}))}
                 }/>
 
-            <hr />
+      <hr />
 
             <FormFeedback>Please enter a budget description and a budget file of type pdf, csv, xlsx, jpeg, jpg, or png</FormFeedback>
 
@@ -55,4 +55,4 @@ const Sofs = (props) => {
     ); 
 };
 
-export default Sofs; 
+export default Sofs;
