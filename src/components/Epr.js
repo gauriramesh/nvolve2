@@ -19,7 +19,7 @@ export default class Epr extends React.Component {
     this.updateSupplements = this.updateSupplements.bind(this); 
     this.nextForm = this.nextForm.bind(this); 
   }
-
+  
   nextForm(){
     const {currentForm} = this.state; 
     this.setState({currentForm: currentForm+1}); 
@@ -87,8 +87,9 @@ export default class Epr extends React.Component {
           <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm}/>
         )}
         {
-            this.currentForm === 4 && 
+            this.state.currentForm === 4 && (
             <Review info={this.state} org={this.org}></Review>
+            )
         }
         
       </div>
