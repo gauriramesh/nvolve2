@@ -67,8 +67,6 @@ export default class Epr extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello {this.org}</h1>
-
         {this.state.currentForm === 1 && (
           <BasicInfo handler={this.infoHandler} nextForm={this.nextForm}></BasicInfo>
         )}
