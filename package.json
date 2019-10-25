@@ -2,7 +2,7 @@
   "name": "nvolve",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gauriramesh.github.io",
+  "homepage": "https://gauriramesh.github.io/nvolve2",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "prettier": "^1.18.2",
