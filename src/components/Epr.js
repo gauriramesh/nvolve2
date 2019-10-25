@@ -17,12 +17,18 @@ export default class Epr extends React.Component {
     this.removeLocation = this.removeLocation.bind(this);
     this.setLocationAcknowledged = this.setLocationAcknowledged.bind(this);
     this.updateSupplements = this.updateSupplements.bind(this); 
-    this.nextForm = this.nextForm.bind(this); 
+    this.nextForm = this.nextForm.bind(this);
+    this.previousForm = this.previousForm.bind(this); 
   }
   
   nextForm(){
     const {currentForm} = this.state; 
     this.setState({currentForm: currentForm+1}); 
+  }
+
+  previousForm() {
+    const { currentForm } = this.state;
+    this.setState({ currentForm: currentForm-1 });
   }
 
   addLocation(location) {
@@ -78,11 +84,12 @@ export default class Epr extends React.Component {
             addLocation={this.addLocation}
             removeLocation={this.removeLocation}
             nextForm={this.nextForm}
+            previousForm={this.previousForm}
           />
         )}
 
         {this.state.currentForm === 3 && (
-          <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm}/>
+          <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm} previousForm={this.previousForm} />
         )}
         {
             this.state.currentForm === 4 && (
