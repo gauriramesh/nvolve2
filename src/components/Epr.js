@@ -2,7 +2,8 @@ import React from "react";
 import { Event } from "../services/eventServices";
 import BasicInfo from "./epr/BasicInfo";
 import LocationForm from "../components/LocationForm";
-import Supplement from "../pages/supplements/Supplement";
+import Supplement from '../pages/supplements/Supplement'; 
+import Review from './epr/Review';
 
 export default class Epr extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Epr extends React.Component {
     this.updateSupplements = this.updateSupplements.bind(this); 
     this.nextForm = this.nextForm.bind(this); 
   }
-
+  
   nextForm(){
     const {currentForm} = this.state; 
     this.setState({currentForm: currentForm+1}); 
@@ -85,6 +86,12 @@ export default class Epr extends React.Component {
         {this.state.currentForm === 3 && (
           <Supplement updateSupplements={this.updateSupplements} nextForm={this.nextForm}/>
         )}
+        {
+            this.state.currentForm === 4 && (
+            <Review info={this.state} org={this.org}></Review>
+            )
+        }
+        
       </div>
     );
   }

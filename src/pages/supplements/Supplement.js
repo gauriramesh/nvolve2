@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Supplement.css";
+import ProgressBar from "../../components/ProgressBar";
+import { PageOptions } from "../../services/eventServices";
 import {
   Button,
   Dropdown,
@@ -60,6 +62,7 @@ const Supplement = (props) => {
 
     return (
         <>
+            <ProgressBar currentPage={PageOptions.supplements}></ProgressBar>
             <div className="container">
                 <Dropdown isOpen={isDropdownOpen} toggle={toggleDropdown}>
                     <DropdownToggle caret>
