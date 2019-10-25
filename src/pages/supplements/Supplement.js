@@ -93,9 +93,9 @@ const Supplement = (props) => {
                 {dropdownSelected === SupplementOptions.PEPSI && <Pepsi addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
             </div>
-
+            <Button color="primary" style={{ position: "absolute", bottom: "20pt", left: "20pt" }} onClick={props.previousForm}> &lt; Location </Button>
             <div className="bottom-right">
-                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => { props.updateSupplements(addedSupplements); props.nextForm(); }}> Submit and Continue to Review </Button> 
+                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => { props.updateSupplements(addedSupplements); props.nextForm(); }}> Review &gt; </Button> 
             </div>
         </>
     );
