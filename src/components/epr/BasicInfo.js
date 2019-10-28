@@ -21,7 +21,7 @@ export default class BasicInfo extends React.Component {
     //pre-populates dropdown options using enum
     this.repeatOptions = [];
     for (const option in eventRepeatOptions) {
-      this.repeatOptions.push(<option>{option}</option>);
+      this.repeatOptions.push(<option key={option}>{option}</option>);
     }
 
     this.state = {
@@ -265,7 +265,7 @@ export default class BasicInfo extends React.Component {
             </Row>
           </Form>
           <Button onClick={this.save} color="primary" className="Button">
-            Next: Location >
+            Location &gt;
           </Button>
         </Container>
       </div>
