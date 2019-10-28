@@ -89,7 +89,7 @@ const ScottFrostAppreciationClub = () => {
             {events.map((event) => {
               return (
                 <div className="my-3">
-                  <EventCard eventName={event.name} eventLocation={event.locations[0].label} eventDate={event.date} eventStatus={event.status}></EventCard>
+                  <EventCard eventName={event.name} eventLocation={event.locations[0].location} eventDate={event.date} eventStatus={event.status}></EventCard>
                 </div>
               );
             })}
