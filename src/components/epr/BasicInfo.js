@@ -96,9 +96,10 @@ export default class BasicInfo extends React.Component {
   render() {
     const validField = this.state.invalid;
     return (
-      <div>
-        <ProgressBar currentPage={PageOptions.basicInfo}></ProgressBar>
-        <Container className="BasicInfo">
+      <>
+      <ProgressBar currentPage={PageOptions.basicInfo}></ProgressBar>
+      <div className="BasicInfo">
+        <Container>
           <h5>Basic Info</h5>
           <Form className="Form">
             <Row>
@@ -268,7 +269,8 @@ export default class BasicInfo extends React.Component {
             Location &gt;
           </Button>
         </Container>
-      </div>
+        </div>
+      </>
     );
   }
 }
