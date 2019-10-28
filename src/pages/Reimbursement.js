@@ -127,6 +127,9 @@ export default class ReimbursementForm extends React.Component {
         <p>
           <b>SOFS Number:</b> 1234
         </p>
+		<p>
+			<b> SOFS Balance:</b> $428.00
+		</p>
         <Form>
           <FormGroup>
             <Label for="eventSelect">Event:</Label>

@@ -47,21 +47,23 @@ export default class LocationForm extends React.Component {
   }
 
   validate = () => {
+    let error = false;
     if (this.props.locations.length === 0) {
       this.setState({ showError: true });
-      return;
+      error = true;
     } else {
       this.setState({ showError: false });
     }
-    for (let location in this.props.locations) {
+    this.props.locations.forEach((l) => {
       if (
-        location.studentsOnlyRuleAcknowledged !== undefined &&
-        !location.studentsOnlyRuleAcknowledged
+        l.studentsOnlyRuleAcknowledged !== undefined &&
+        !l.studentsOnlyRuleAcknowledged
       ) {
-        return;
+        error = true;
       }
-    }
+    });
 
+    if (error) return;
     this.props.nextForm();
   };
 
@@ -90,7 +92,8 @@ export default class LocationForm extends React.Component {
                 </Col>
                 </Row>
             </Container>
-            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.validate}> Submit and Continue to Supplements </Button> 
+            <Button style={ { position: "absolute", bottom: "20pt", left: "20pt" } }color="primary" onClick={this.previousForm}> &lt; Basic Info </Button>
+            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.validate}> Supplements &gt; </Button> 
         </div>
     );
   }
