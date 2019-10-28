@@ -26,7 +26,7 @@ const NebraskansForCheese = () => {
           <div className="mt-3">
             {events.map((event) => {
               return (
-                <div className="my-3">
+                <div className="my-3" key={event.name}>
                   <EventCard eventName={event.name} eventLocation={event.locations[0].location} eventDate={event.date} eventStatus={event.status}></EventCard>
                 </div>
               );

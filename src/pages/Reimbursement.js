@@ -9,6 +9,7 @@ import {
   Label,
   FormFeedback
 } from "reactstrap";
+import { getEvents } from '../services/eventServices';
 import "./Reimbursement.css";
 
 import { Redirect } from "react-router-dom";
@@ -143,9 +144,7 @@ export default class ReimbursementForm extends React.Component {
               placeholder="Choose an event"
             >
               <option></option>
-              <option>Trip to the UNL Dairy Store</option>
-              <option>Trip to the Dairy Farm</option>
-              <option>Cheese Tasting</option>
+              {getEvents('nebraskansforcheese').map(e => (<option key={e.name}>{e.name}</option>))}
             </Input>
             <FormFeedback invalid="true">Please select an event.</FormFeedback>
           </FormGroup>
