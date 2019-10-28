@@ -11,7 +11,7 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.state.currentForm = 4; 
+    this.state.currentForm = 1; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);

@@ -269,6 +269,7 @@ export default class BasicInfo extends React.Component {
             Location &gt;
           </Button>
         </Container>
+        </div>
       </>
     );
   }
