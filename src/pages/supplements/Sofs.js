@@ -18,7 +18,7 @@ const Sofs = (props) => {
         const hasInvalidInput = (invalidInputs.budgetDescription || invalidInputs.budgetFile); 
         if (shouldSave && !hasInvalidInput){
             props.addSupplement("SOFS", sofsSupplement); 
-            props.changeSelected("None"); 
+            props.changeSelected("Add"); 
         } else {
             setShouldSave(false); 
         }
@@ -57,7 +57,7 @@ const Sofs = (props) => {
             <FormFeedback>Please enter a budget description and a budget file of type pdf, csv, xlsx, jpeg, jpg, or png</FormFeedback>
 
             <ButtonGroup> 
-                <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
+                <Button color="secondary" onClick={() => {props.changeSelected("Add"); }} style={{ marginRight: '20pt'}}>Cancel</Button>
                 <Button color="primary" onClick={save}>Add</Button>
             </ButtonGroup>
         </Form>

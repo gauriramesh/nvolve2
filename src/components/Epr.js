@@ -94,7 +94,7 @@ export default class Epr extends React.Component {
         
         {
             this.state.currentForm === 4 && (
-            <Review info={this.state} org={this.org}></Review>
+            <Review info={this.state} org={this.org} previousForm={this.previousForm}></Review>
             )
         }
         
