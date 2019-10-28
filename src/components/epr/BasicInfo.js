@@ -98,8 +98,7 @@ export default class BasicInfo extends React.Component {
     return (
       <>
       <ProgressBar currentPage={PageOptions.basicInfo}></ProgressBar>
-      <div className="BasicInfo">
-        <Container>
+        <Container className="BasicInfo">
           <h5>Basic Info</h5>
           <Form className="Form">
             <Row>
@@ -269,7 +268,6 @@ export default class BasicInfo extends React.Component {
             Location &gt;
           </Button>
         </Container>
-        </div>
       </>
     );
   }
