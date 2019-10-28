@@ -98,11 +98,11 @@ export default class BasicInfo extends React.Component {
     return (
       <>
       <ProgressBar currentPage={PageOptions.basicInfo}></ProgressBar>
-      <div className="BasicInfo">
+      <div>
         <Container>
           <h5>Basic Info</h5>
           <Form className="Form">
-            <Row>
+            <Row className="BasicInfo">
               <Col xs="6">
                 <FormGroup>
                   <Label for="eventTitle">Title</Label>
@@ -265,7 +265,7 @@ export default class BasicInfo extends React.Component {
               </Col>
             </Row>
           </Form>
-          <Button onClick={this.save} color="primary" className="Button">
+          <Button onClick={this.save} color="primary" className="Button" style={{ float: 'right', margin: '15pt'}}>
             Location &gt;
           </Button>
         </Container>

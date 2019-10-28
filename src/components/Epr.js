@@ -11,7 +11,7 @@ export default class Epr extends React.Component {
 
     this.state = new Event();
     this.org = props.match.params.org;
-    this.state.currentForm = 1; 
+    this.state.currentForm = 4; 
 
     this.addLocation = this.addLocation.bind(this);
     this.removeLocation = this.removeLocation.bind(this);
@@ -94,7 +94,7 @@ export default class Epr extends React.Component {
         
         {
             this.state.currentForm === 4 && (
-            <Review info={this.state} org={this.org}></Review>
+            <Review info={this.state} org={this.org} previousForm={this.previousForm}></Review>
             )
         }
         

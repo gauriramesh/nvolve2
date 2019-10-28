@@ -10,7 +10,7 @@ const TravelInsurance = (props) => {
         const hasInvalidInput = (invalidInputs.driver || invalidInputs.passengers); 
         if (shouldSave && !hasInvalidInput){
             props.addSupplement("TRAVEL_INSURANCE", travelInsuranceSupplement); 
-            props.changeSelected("None"); 
+            props.changeSelected("Add"); 
         } else {
             setShouldSave(false); 
         }
@@ -47,7 +47,7 @@ const TravelInsurance = (props) => {
             <FormFeedback invalid>Please enter a driver and at least one passenger</FormFeedback>
 
             <ButtonGroup> 
-                <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
+                <Button color="secondary" onClick={() => {props.changeSelected("Add"); }} style={{ marginRight: '20pt'}}>Cancel</Button>
                 <Button color="primary" onClick={save}> Add</Button>
             </ButtonGroup>
         </Form>

@@ -10,7 +10,7 @@ const Pepsi = (props) => {
         const hasInvalidInput = (invalidInputs.numberPepsi || invalidInputs.numberDietPepsi || invalidInputs.numberMountainDew); 
         if (shouldSave && !hasInvalidInput){
             props.addSupplement("PEPSI", pepsiSupplement); 
-            props.changeSelected("None"); 
+            props.changeSelected("Add"); 
         } else {
             setShouldSave(false); 
         }
@@ -57,7 +57,7 @@ const Pepsi = (props) => {
             <FormFeedback invalid>Please enter a non-negative number for Pepsi, Diet Pepsi, and Mountain Dew needs</FormFeedback>
 
             <ButtonGroup> 
-                <Button color="secondary" onClick={() => {props.changeSelected("None"); }}>Cancel</Button>
+                <Button color="secondary" onClick={() => {props.changeSelected("Add"); }} style={{ marginRight: '20pt'}}>Cancel</Button>
                 <Button color="primary" onClick={save}>Add</Button>
             </ButtonGroup>
         </Form>

@@ -72,6 +72,7 @@ export default class LocationForm extends React.Component {
       <div>
         <ProgressBar currentPage={PageOptions.location}></ProgressBar>
         <Container>
+        <h5>Locations</h5>
           <Row
             style={{
               padding: "20px",
@@ -91,9 +92,10 @@ export default class LocationForm extends React.Component {
                     {this.renderLocationList()}
                 </Col>
                 </Row>
+                <Button style={ { float: 'left', margin: '15pt'} }color="primary" onClick={this.props.previousForm}> &lt; Basic Info </Button>
+            <Button style={ { float: 'right', margin: '15pt'} }color="primary" onClick={this.validate}> Supplements &gt; </Button> 
+
             </Container>
-            <Button style={ { position: "absolute", bottom: "20pt", left: "20pt" } }color="primary" onClick={this.props.previousForm}> &lt; Basic Info </Button>
-            <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.validate}> Supplements &gt; </Button> 
         </div>
     );
   }

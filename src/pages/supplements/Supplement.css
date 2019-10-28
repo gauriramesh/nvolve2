@@ -3,7 +3,6 @@
 }
 
 .bottom-right {
-  position: absolute;
-  bottom: 20pt;
-  right: 20pt;
+  float: right;
+  margin: 20pt;
 }

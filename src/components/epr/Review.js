@@ -25,10 +25,11 @@ export default class Review extends React.Component {
     return (
       <>
         <ProgressBar currentPage={PageOptions.review}></ProgressBar>
-        <div className="BasicInfo">
-          <h5>Review and Confirm</h5>
+        <div>
+          
           <Container>
-              <Row>
+            <h5>Review and Submit</h5>
+              <Row className="BasicInfo">
                   <Col xs="6">
                       <b>Event Title</b>
                       <p>{this.props.info.name}</p>
@@ -70,11 +71,12 @@ export default class Review extends React.Component {
                       <br/>
                   </Col>
               </Row>
-          </Container>
-          <Button onClick={this.submit} color="primary" className="Button">Submit</Button>
+              <Button style={ { float: 'left', margin: '15pt'} }color="primary" onClick={this.props.previousForm}> &lt; Supplements </Button>
+          <Button onClick={this.submit} color="success" className="Button" style={{ float: 'right', margin: '15pt' }}>Submit</Button>
           {
             this.state.redirectOnSubmit && <Redirect to={{pathname : "/", state : {formSuccessfullySubmitted : true}}}/>
           }
+          </Container>
         </div>
       </>
     );

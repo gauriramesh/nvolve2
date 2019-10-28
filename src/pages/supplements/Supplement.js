@@ -8,7 +8,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Table
+  Table,
+  Container
 } from "reactstrap";
 import Sofs from "./Sofs";
 import TravelInsurance from "./TravelInsurance";
@@ -22,7 +23,6 @@ export const SupplementOptions = {
 
 export const SupplementTable = (props) => {
     const SupplementList = () => {
-
         return Object.keys(props.addedSupplements).map(element => {
             return props.addedSupplements[element] ? (
                 <tr key={SupplementOptions[element]}>    
@@ -52,7 +52,7 @@ export const SupplementTable = (props) => {
 const Supplement = (props) => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
-    const [dropdownSelected, setDropdownSelected] = useState("None"); 
+    const [dropdownSelected, setDropdownSelected] = useState("Add"); 
     const [addedSupplements, setAddedSupplements] = useState({"SOFS": null, "TRAVEL_INSURANCE": null, "PEPSI": null}); 
 
     function toggleDropdown() { setIsDropdownOpen(prev => !prev); }; 
@@ -63,8 +63,14 @@ const Supplement = (props) => {
     return (
         <>
             <ProgressBar currentPage={PageOptions.supplements}></ProgressBar>
-            <div className="container">
-                <Dropdown isOpen={isDropdownOpen} toggle={toggleDropdown}>
+
+            <Container>
+            <h5>Supplements</h5>
+            <div style={{padding: "20px",
+              backgroundColor: "#f5f1e7",
+              borderRadius: "10px"}}>
+                  
+                  <Dropdown isOpen={isDropdownOpen} toggle={toggleDropdown} style={{ marginBottom: '20px'}}>
                     <DropdownToggle caret>
                         {dropdownSelected}
                     </DropdownToggle>
@@ -80,23 +86,19 @@ const Supplement = (props) => {
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
-            </div>
-
-            <div className="container">
-               
-                {dropdownSelected === "None" && <SupplementTable addedSupplements={addedSupplements} removeSupplement={removeSupplement} /> }
+                {dropdownSelected === "Add" && <SupplementTable addedSupplements={addedSupplements} removeSupplement={removeSupplement} /> }
 
                 {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} org={props.org} /> }
 
                 {dropdownSelected === SupplementOptions.TRAVEL_INSURANCE && <TravelInsurance addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
                 {dropdownSelected === SupplementOptions.PEPSI && <Pepsi addSupplement={addSupplement} changeSelected={changeSelected} /> }
-
-            </div>
-            <Button color="primary" style={{ position: "absolute", bottom: "20pt", left: "20pt" }} onClick={props.previousForm}> &lt; Location </Button>
+                <Button color="primary" style={{ margin: '30pt', float: 'left' }} onClick={props.previousForm}> &lt; Location </Button>
             <div className="bottom-right">
-                <Button color="primary" disabled={dropdownSelected !== "None"} onClick={() => { props.updateSupplements(addedSupplements); props.nextForm(); }}> Review &gt; </Button> 
+                <Button color="primary" style={{ margin: '10pt', float: 'right' }} disabled={dropdownSelected !== "Add"} onClick={() => { props.updateSupplements(addedSupplements); props.nextForm(); }}> Review &gt; </Button> 
             </div>
+            </div>
+            </Container>
         </>
     );
 
