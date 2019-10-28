@@ -5,12 +5,16 @@ export function addEvent(rsoName, event) {
     localStorage.setItem("events:" + rsoName, JSON.stringify(storedEvents));
     return;
   }
-  localStorage.setItem("events:" + rsoName, JSON.stringify([event]));
+  const defaults = getDefaultEvents();
+  defaults.push(event);
+  localStorage.setItem("events:" + rsoName, JSON.stringify(defaults));
 }
 
 export function getEvents(rsoName) {
   const json = localStorage.getItem("events:" + rsoName);
-  if (!json) return [];
+  if (!json) {
+    return getDefaultEvents();
+  }
   const parsed = JSON.parse(json);
   parsed.forEach((v, i, arr) => {
     arr[i] = Object.assign(new Event(), v);
@@ -81,6 +85,20 @@ export class SofsSupplement {
   constructor(budgetDescription) {
     this.budgetDescription = budgetDescription;
   }
+}
+
+function getDefaultEvents() {
+  const dairyStore = new Event();
+  dairyStore.name = 'Trip to the Dairy Store';
+  dairyStore.locations = [new OffCampusEventLocation('UNL Dairy Store')];
+  dairyStore.date = '11/23/2019';
+  dairyStore.status = eventStatuses.Denied;
+  const cheeseTasting = new Event();
+  cheeseTasting.name = 'Cheese Tasting';
+  cheeseTasting.locations = [new OffCampusEventLocation('Cheese Store')];
+  cheeseTasting.date = '12/03/2019';
+  cheeseTasting.status = eventStatuses.Approved;
+  return [dairyStore, cheeseTasting];
 }
 
 export const PossibleEventLocations = [
