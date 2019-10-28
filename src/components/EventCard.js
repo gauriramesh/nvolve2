@@ -11,10 +11,6 @@ class EventCard extends React.Component {
         super(props);
     }
 
-    getNiceDate() {
-        return this.props.eventDate.substring(5, 7) + "/" + this.props.eventDate.substring(8, 10) + "/" + this.props.eventDate.substring(0, 4);
-    }
-
     render() {
         return (
             <Container className="event-card py-3 px-3">
@@ -34,7 +30,7 @@ class EventCard extends React.Component {
                             height="30px"
                             style={{display: 'inline-block'}}
                         />
-                        <h6 style={{display: 'inline-block'}}>{this.getNiceDate()}</h6>
+                        <h6 style={{display: 'inline-block'}}>{this.props.eventDate}</h6>
                     </Col>
                     <Col md="3" className="text-right">
                         <div className={this.props.eventStatus}></div>
