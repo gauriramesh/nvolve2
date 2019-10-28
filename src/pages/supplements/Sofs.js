@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react"; 
-import { Button, ButtonGroup, Form, FormFeedback, Label, Input, } from 'reactstrap'; 
+import { Button, ButtonGroup, Form, FormFeedback, Label, Input, CardText } from 'reactstrap'; 
+import { getRsoInfo } from "../../services/rsoServices.js";
+
+
+const RsoFullNames = {
+    "nebraskansforcheese": "Nebraskans For Cheese", 
+    "scottfrostappreciationclub": "Scott Frost Appreciation Club"
+}; 
 
 const Sofs = (props) => {
     const [sofsSupplement, setSofsSupplement] = useState({budgetDescription: null, budgetFile: null}); 
     const [invalidInputs, setInvalidInputs] = useState({ budgetDescription: false, budgetFile: false }); 
     const [shouldSave, setShouldSave] = useState(false); 
+    const rsoObject = getRsoInfo(RsoFullNames[props.org]); 
+    console.log(rsoObject); 
 
     useEffect(() => {
         const hasInvalidInput = (invalidInputs.budgetDescription || invalidInputs.budgetFile); 
@@ -26,6 +35,8 @@ const Sofs = (props) => {
 
     return (
         <Form>
+            <CardText>Current SOFS Balance: ${rsoObject.sofsBalance.toFixed(2)}</CardText>
+
             <Label for="budgetDescription">Budget Description</Label>
             <Input type="textarea" id="budgetDescription" invalid={invalidInputs.budgetDescription} onChange={event => 
             {

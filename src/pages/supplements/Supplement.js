@@ -86,7 +86,7 @@ const Supplement = (props) => {
                
                 {dropdownSelected === "None" && <SupplementTable addedSupplements={addedSupplements} removeSupplement={removeSupplement} /> }
 
-                {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} /> }
+                {dropdownSelected === SupplementOptions.SOFS && <Sofs addSupplement={addSupplement} changeSelected={changeSelected} org={props.org} /> }
 
                 {dropdownSelected === SupplementOptions.TRAVEL_INSURANCE && <TravelInsurance addSupplement={addSupplement} changeSelected={changeSelected} /> }
 
