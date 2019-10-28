@@ -25,9 +25,8 @@ export default class Review extends React.Component {
     return (
       <>
         <ProgressBar currentPage={PageOptions.review}></ProgressBar>
-        <div className="BasicInfo">
-          <h5>Review and Confirm</h5>
-          <Container>
+          <Container className="BasicInfo">
+              <h5>Review and Confirm</h5>
               <Row>
                   <Col xs="6">
                       <b>Event Title</b>
@@ -70,12 +69,11 @@ export default class Review extends React.Component {
                       <br/>
                   </Col>
               </Row>
+              <Button onClick={this.submit} color="primary" className="Button">Submit</Button>
           </Container>
-          <Button onClick={this.submit} color="primary" className="Button">Submit</Button>
           {
             this.state.redirectOnSubmit && <Redirect to={{pathname : "/", state : {formSuccessfullySubmitted : true}}}/>
           }
-        </div>
       </>
     );
   }
