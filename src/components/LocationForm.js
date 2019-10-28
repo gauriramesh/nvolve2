@@ -92,7 +92,7 @@ export default class LocationForm extends React.Component {
                 </Col>
                 </Row>
             </Container>
-            <Button style={ { position: "absolute", bottom: "20pt", left: "20pt" } }color="primary" onClick={this.previousForm}> &lt; Basic Info </Button>
+            <Button style={ { position: "absolute", bottom: "20pt", left: "20pt" } }color="primary" onClick={this.props.previousForm}> &lt; Basic Info </Button>
             <Button style={ { position: "absolute", bottom: "20pt", right: "20pt" } }color="primary" onClick={this.validate}> Supplements &gt; </Button> 
         </div>
     );
