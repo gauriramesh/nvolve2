@@ -79,7 +79,7 @@ const ScottFrostAppreciationClub = () => {
     <Container>
       <Row className="mt-5 mb-2">
         <Col md="12">
-          <h1 className="display-2">ScottFrostAppreciationClub</h1>
+          <h1 className="display-2">Scott Frost Appreciation Club</h1>
         </Col>
       </Row>
       <Row>
