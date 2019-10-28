@@ -13,7 +13,6 @@ const Sofs = (props) => {
     const [invalidInputs, setInvalidInputs] = useState({ budgetDescription: false, budgetFile: false }); 
     const [shouldSave, setShouldSave] = useState(false); 
     const rsoObject = getRsoInfo(RsoFullNames[props.org]); 
-    console.log(rsoObject); 
 
     useEffect(() => {
         const hasInvalidInput = (invalidInputs.budgetDescription || invalidInputs.budgetFile); 
