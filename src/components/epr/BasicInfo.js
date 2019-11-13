@@ -34,10 +34,8 @@ export default class BasicInfo extends React.Component {
         privateDescription: false,
         numParticipants: false,
         date: false,
-        startHour: false,
-        startMinute: false,
-        endHour: false,
-        endMinute: false
+        startTime: false,
+        endTime: false
       }
     };
   }
@@ -77,8 +75,8 @@ export default class BasicInfo extends React.Component {
 
     // If all forms filled, prepare info and send to master component
     if (canProceed) {
-      const startTime = `${this.state.startHour}:${this.state.startMinute} ${this.state.startAmPm}`;
-      const endTime = `${this.state.endHour}:${this.state.endMinute} ${this.state.endAmPm}`;
+      const startTime = `${this.state.startTime} ${this.state.startAmPm}`;
+      const endTime = `${this.state.endTime} ${this.state.endAmPm}`;
 
       this.setState(
         {
@@ -186,28 +184,14 @@ export default class BasicInfo extends React.Component {
                     <FormGroup>
                       <Input
                         invalid={validField.startHour}
-                        name="startHour"
+                        name="startTime"
                         id="hour"
-                        placeholder="12"
                         onChange={this.handleChange}
                       />
                       <FormFeedback invalid>
                         Must specify start hour.
                       </FormFeedback>
                     </FormGroup>
-                  </Col>
-                  :
-                  <Col xs="6" sm="3">
-                    <Input
-                      invalid={validField.startMinute}
-                      name="startMinute"
-                      id="startMinute"
-                      placeholder="00"
-                      onChange={this.handleChange}
-                    />
-                    <FormFeedback invalid>
-                      Must specify start minute.
-                    </FormFeedback>
                   </Col>
                   <Col sm="3">
                     <FormGroup>
@@ -229,24 +213,12 @@ export default class BasicInfo extends React.Component {
                     <FormGroup>
                       <Input
                         invalid={validField.endHour}
-                        name="endHour"
+                        name="endTime"
                         id="hour"
-                        placeholder="12"
                         onChange={this.handleChange}
                       />
                       <FormFeedback invalid>Must specify end hour.</FormFeedback>
                     </FormGroup>
-                  </Col>
-                  :
-                  <Col xs="6" sm="3">
-                    <Input
-                      invalid={validField.endMinute}
-                      name="endMinute"
-                      id="endMinute"
-                      placeholder="00"
-                      onChange={this.handleChange}
-                    />
-                    <FormFeedback invalid>Must specify end minute.</FormFeedback>
                   </Col>
                   <Col sm="3">
                     <FormGroup>
