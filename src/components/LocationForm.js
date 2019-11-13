@@ -28,7 +28,8 @@ export default class LocationForm extends React.Component {
 
     this.state = {
       currentlySelected: { label: "", value: "" },
-      showError: false
+      showError: false,
+      inputValue: ''
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -67,6 +68,11 @@ export default class LocationForm extends React.Component {
     this.props.nextForm();
   };
 
+  onInputChange = (inputValue, event) => {
+    if (event.action === "input-change" || event.action === "set-value")
+      this.setState({ inputValue });
+  }
+
   render() {
     return (
       <div>
@@ -88,6 +94,8 @@ export default class LocationForm extends React.Component {
                 value={this.state.currentlySelected}
                 onChange={this.onSelect}
                 formatCreateLabel={s => <label>Add "{s}"</label>}
+                onInputChange={this.onInputChange}
+                inputValue={this.state.inputValue}
               />
                     {this.renderLocationList()}
                 </Col>
